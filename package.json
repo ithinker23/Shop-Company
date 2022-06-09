@@ -1,19 +1,5 @@
 {
-  "name": "shop-project",
-  "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ithinker23/Shop-Company.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/ithinker23/Shop-Company/issues"
-  },
-  "homepage": "https://github.com/ithinker23/Shop-Company#readme",
-  "description": ""
+  "dependencies": {
+    "uuid": "^8.3.2"
+  }
 }
