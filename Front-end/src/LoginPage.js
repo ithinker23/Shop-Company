@@ -1,43 +1,32 @@
 import React, { useState, useRef, useEffect } from 'react';
+import Axios from 'axios';
+
 const { v4: uuidv4 } = require('uuid');
 
 
 export default function LoginPage() {
-  const accounts = [['JOE', "MAMA"], ['YO', "PAPA"], ["GO","DADA"]]
+  const backendURL = 'http://localhost:5000'
 
   var usernameRef = useRef();
   var passwordRef = useRef();
+  
+  function checkLoginHandler(e){
+    if(!(usernameRef.current.value == "" || passwordRef.current.value == "")){
+    const formData = {username: usernameRef.current.value, password: passwordRef.current.value}
+     // console.log(usernameRef.current.value + " " + passwordRef.current.value)
+      //console.log(formData)
+    Axios.post(backendURL +'/loginChecker/validifyLogin', formData)
 
-  function checkLoginHandler(){
-     var usernameVal = usernameRef.current.value
-     var passwordVal = passwordRef.current.value
+    }else{
 
-    if (usernameVal == "" || passwordVal == "") {
-      alert('Please provide both a username and password')
-        
-    } else {
-      
-      var found = accounts.find(account => account[0] == usernameVal && account[1] == passwordVal)
-      
-      if (found) {
-        return true
-
-      } else {
-
-        usernameRef.current.value = ""
-        passwordRef.current.value = ""
-        alert("Invalid username or password")
-      }
+      alert('input fields are empty');
+    }
   }
-}
-
   return (
     <>
-    <form>
-      <input ref={usernameRef} type="email" required></input>
-      <input ref={passwordRef} type="password" required></input>
-      <button type='submit' onClick={checkLoginHandler}>CLick ME</button>
-    </form>
+      <input ref={usernameRef} type="email" ></input>
+      <input ref={passwordRef} type="password" ></input>
+      <button type='submit' onClick={checkLoginHandler}>Click Me</button>
     </>
   )
 }
