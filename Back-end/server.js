@@ -2,8 +2,8 @@ const express = require('express')
 const app = express()
 const port = 5000
 
-const routes = require('./api_routes/routes');
-routes(app);
+const loginCheckerRoutes = require('./routes/loginChecker');
+loginCheckerRoutes(app);
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
