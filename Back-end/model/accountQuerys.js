@@ -15,7 +15,17 @@ const DBConnection = mysql.createConnection({
 
 
 function createAccountDB(account){ 
-    DBConnection.query("INSERT INTO accounts (Username, Email, Password, Joined) VALUES ('"+ account.Username +"', '"+ account.Email +"', '"+ account.Password +"', '"+ account.Joined +"')")
+
+    DBConnection.query("SELECT username FROM accounts WHERE username = ' "+ account.Username+" ')", (err,res) => {
+      if(err) throw err
+
+      if(res == null){
+        DBConnection.query("INSERT INTO accounts (Username, Email, Password, Joined) VALUES ('"+ account.Username +"', '"+ account.Email +"', '"+ account.Password +"', '"+ account.Joined +"')")
+      }else{
+        console.log('Account with username already exists, cannot create another account')
+      }
+
+    })
 
     showDB();
 }
@@ -28,9 +38,14 @@ function showDB(){
 }
 
 function findAccount(account){
-    
-}
+    DBConnection.query("SELECT username FROM accounts WHERE username = ' " + account.Username + " ')", (err,res) => {
+      if(err) throw err
 
-createAccountDB({Username: "Ryan", Email: "ryancyae@gmail.com", Password: '12345', Joined: 2022-06-09})
+      if(res == null){ return null}
+      else{
+        return res
+      }
+    })
+}
 
 module.exports = {createAccountDB, findAccount}
