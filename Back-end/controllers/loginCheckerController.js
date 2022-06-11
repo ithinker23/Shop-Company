@@ -2,9 +2,9 @@ const DB = require('../model/accountQuerys')
 
 module.exports = {
 
-    validifyLogin: (req, res) => {
+    validifyLogin: async (req, res) => {
 
-        DB.findAccount(req.body).then((response) => {
+       var response = await DB.findAccount(req.body)
             if (response) {
                 if (response.Password == req.body.Password) {
                     res.sendStatus(200)
@@ -16,7 +16,5 @@ module.exports = {
             } else {
                 console.log('account does not exist')
             }
-        });
-
     }
 }
