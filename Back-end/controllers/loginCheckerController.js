@@ -2,9 +2,10 @@ const DB = require('../model/accountQuerys')
 
 module.exports = {
 
-    validifyLogin: async (req, res) => {
+    validifyLogin:(req, res) => {
 
-       var response = await DB.findAccount(req.body)
+       var response = DB.findAccount(req.body)
+       
             if (response) {
                 if (response.Password == req.body.Password) {
                     res.sendStatus(200)
