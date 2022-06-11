@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React, { useRef } from 'react';
 import Axios from 'axios';
 
 export default function LoginPage() {
@@ -6,17 +6,20 @@ export default function LoginPage() {
 
   var usernameRef = useRef();
   var passwordRef = useRef();
-  
-  function checkLoginHandler(e){
-    if(!(usernameRef.current.value === "" || passwordRef.current.value === "")){
-    const formData = {Username: usernameRef.current.value, Password: passwordRef.current.value}
-     // console.log(usernameRef.current.value + " " + passwordRef.current.value)
-      //console.log(formData)
-    Axios.post(backendURL +'/loginChecker/validifyLogin', formData).then((response) => {
-      console.log(response)
-    })
 
-    }else{
+  async function checkLoginHandler(e) {
+    if (!(usernameRef.current.value === "" || passwordRef.current.value === "")) {
+
+      const formData = { Username: usernameRef.current.value, Password: passwordRef.current.value }
+
+      try {
+        await Axios.post(backendURL + '/validify/login', formData)
+        window.location = "/"
+      } catch (err) {
+        console.log(err.response)
+      }
+
+    } else {
 
       alert('input fields are empty');
     }

@@ -9,8 +9,8 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
-const loginCheckerRouter = require('./routes/loginChecker');
-app.use('/loginChecker', loginCheckerRouter);
+const valRouter = require('./routes/valRouter');
+app.use('/validify', valRouter);
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)

@@ -2,47 +2,80 @@ const mysql = require('mysql');
 
 
 const DBConnection = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "",
-    database: "shop app"
-  });
-  
-  DBConnection.connect(function(err) {
-    if (err) throw err;
-    console.log("Connected!");
-  });
+  host: "localhost",
+  user: "root",
+  password: "",
+  database: "shop app"
+});
 
+DBConnection.connect(function (err) {
+  if (err) throw err;
+  console.log("Connected!");
+});
 
-function createAccountDB(account){ 
-
-    DBConnection.query("SELECT username FROM accounts WHERE username = ' "+ account.Username+" ')", (err,res) => {
-      if(err) throw err
-
-      if(res == null){
-        DBConnection.query("INSERT INTO accounts (Username, Email, Password, Joined) VALUES ('"+ account.Username +"', '"+ account.Email +"', '"+ account.Password +"', '"+ account.Joined +"')")
-      }else{
-        console.log('Account with username already exists, cannot create another account')
-      }
-
-    })
-
-    showDB();
-}
-
-function showDB(){
+function showDB() {
   DBConnection.query("SELECT * FROM accounts", (err, results) => {
-    if(err) throw err
+    if (err) throw err
     console.log(results)
   })
 }
 
-function findAccount(account){
+function createAccountDB(account) {
+  const d = new Date().toDateString().split(" ")
 
-    DBConnection.query("SELECT * FROM accounts WHERE Username='"+account.Username+"'", (err,res) => {
-      if(err) throw err
-      
-    })
+  switch (d[1]) {
+    case "Jan":
+      d[1] = "01"
+      break;
+    case "Feb":
+      d[1] = "02"
+      break;
+    case "Mar":
+      d[1] = "03"
+      break;
+    case "Apr":
+      d[1] = "04"
+      break;
+    case "May":
+      d[1] = "05"
+      break;
+    case "Jun":
+      d[1] = "06"
+      break;
+    case "Jul":
+      d[1] = "07"
+      break;
+    case "Aug":
+      d[1] = "08"
+      break;
+    case "Sep":
+      d[1] = "09"
+      break;
+    case "Oct":
+      d[1] = "10"
+      break;
+    case "Nov":
+      d[1] = "11"
+      break;
+    default:
+      d[1] = "12"
+      break;
+  }
+
+  DBConnection.query("INSERT INTO accounts (Username, Email, Password, Joined) VALUES ('" + account.Username + "', '" + account.Email + "', '" + account.Password + "', '"+ d[3] + "" + d[1] + "" + d[2] +"')")
+  showDB();
 }
 
-module.exports = {createAccountDB, findAccount}
+function findAccount(col, pred) {
+  return new Promise((resolve, reject) => {
+    DBConnection.query("SELECT * FROM accounts WHERE " + col + " = '" + pred + "'", (err, res) => {
+      if (err) {
+        reject(err)
+      } else {
+        resolve(res[0])
+      }
+    })
+  })
+}
+
+module.exports = { createAccountDB, findAccount }
