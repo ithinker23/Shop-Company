@@ -1,8 +1,5 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, {useRef} from 'react';
 import Axios from 'axios';
-
-const { v4: uuidv4 } = require('uuid');
-
 
 export default function LoginPage() {
   const backendURL = 'http://localhost:5000'
@@ -11,11 +8,13 @@ export default function LoginPage() {
   var passwordRef = useRef();
   
   function checkLoginHandler(e){
-    if(!(usernameRef.current.value == "" || passwordRef.current.value == "")){
-    const formData = {username: usernameRef.current.value, password: passwordRef.current.value}
+    if(!(usernameRef.current.value === "" || passwordRef.current.value === "")){
+    const formData = {Username: usernameRef.current.value, Password: passwordRef.current.value}
      // console.log(usernameRef.current.value + " " + passwordRef.current.value)
       //console.log(formData)
-    Axios.post(backendURL +'/loginChecker/validifyLogin', formData)
+    Axios.post(backendURL +'/loginChecker/validifyLogin', formData).then((response) => {
+      console.log(response)
+    })
 
     }else{
 
@@ -24,7 +23,7 @@ export default function LoginPage() {
   }
   return (
     <>
-      <input ref={usernameRef} type="email" ></input>
+      <input ref={usernameRef} type="text" ></input>
       <input ref={passwordRef} type="password" ></input>
       <button type='submit' onClick={checkLoginHandler}>Click Me</button>
     </>

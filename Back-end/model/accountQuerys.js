@@ -38,14 +38,16 @@ function showDB(){
 }
 
 function findAccount(account){
-    DBConnection.query("SELECT username FROM accounts WHERE username = ' " + account.Username + " ')", (err,res) => {
-      if(err) throw err
+  return new Promise((resolve,reject) => {
 
-      if(res == null){ return null}
-      else{
-        return res
-      }
+    DBConnection.query("SELECT * FROM accounts WHERE Username='"+account.Username+"'", (err,res) => {
+      if(err) throw reject(err)
+
+      return resolve(res[0])
     })
+
+  })
+
 }
 
 module.exports = {createAccountDB, findAccount}

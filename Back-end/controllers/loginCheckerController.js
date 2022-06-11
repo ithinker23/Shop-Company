@@ -4,17 +4,19 @@ module.exports = {
 
     validifyLogin: (req, res) => {
 
-        var accountValidity = DB.findAccount(req.body.username);
-
-        if (accountValidity) {
-            if (accountValidity.Password == req.body.password) {
-                res.status(200)
-                console.log('logged')
+        DB.findAccount(req.body).then((response) => {
+            if (response) {
+                if (response.Password == req.body.Password) {
+                    res.sendStatus(200)
+                    console.log('logged in')
+                } else {
+                    res.sendStatus(418)
+                    console.log('invalid password')
+                }
             } else {
-                console.log('invalid')
+                console.log('account does not exist')
             }
-        }else{
-            console.log('account does not exist')
-        }
+        });
+
     }
 }
