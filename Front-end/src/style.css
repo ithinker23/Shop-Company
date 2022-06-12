@@ -1,7 +1,46 @@
 .notification{
-    opacity: 0%;
     transition:all 1s;
+    position: relative;
+    padding: 20px;
+    margin:0 10px;
+    border-radius: 10px;
+    border:1px solid black;
+    background-color: rgb(255, 114, 114);
+    animation: notifAnim 3s;
+    opacity: 0%;
+    font-size: 20px;
 }
-.notifAnim{
-    opacity: 100%;
+.notifContainer{
+    position: absolute;
+    width:fit-content;
+    height: fit-content;
+    bottom: 0%;
+    padding: 10px;
+    right:0%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+.notifMoveAnim{
+    height: 70px;
+    animation: notifScroll 1s;
+}
+@keyframes notifScroll {
+    0%{
+        height: 0px;
+    }
+    100%{
+        height:70px;
+    }
+}
+@keyframes notifAnim {
+    0%{
+        opacity: 0%;
+    }
+    50%{
+        opacity: 100%;
+    }
+    100%{
+        opacity: 0%;
+    }
 }

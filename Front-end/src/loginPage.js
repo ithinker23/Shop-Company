@@ -1,14 +1,20 @@
 import React, { useRef, useState } from 'react';
 import Axios from 'axios';
-import Notif from './Notif'
+import Notifs from './Notifs'
 
 export default function LoginPage() {
   const backendURL = 'http://localhost:5000'
 
-  const [notif, setNotif] = useState({text: "", displayMsg:false});
+  const [notifs, setNotifs] = useState([]);
 
   var usernameRef = useRef();
   var passwordRef = useRef();
+
+  function showNotifs(msg) {
+    setNotifs(prevNotifs => {
+      return [...prevNotifs, { text: msg }];
+    })
+  }
 
   async function checkLoginHandler(e) {
     if (!(usernameRef.current.value === "" || passwordRef.current.value === "")) {
@@ -17,21 +23,16 @@ export default function LoginPage() {
 
       try {
         var response = await Axios.post(backendURL + '/validify/login', formData)
-        setNotif(prevNotif => {
-          return {text: response.data.msg, displayMsg:true};
-        })
+
+        showNotifs(response.data.msg)
+
         window.location = "/"
       } catch (err) {
-        setNotif(prevNotif => {
-          return {text: err.response.data.msg, displayMsg:true};
-        })
+        showNotifs(err.response.data.msg)
       }
 
     } else {
-
-      setNotif(prevNotif => {
-        return {text: "input fields are empty", displayMsg:true};
-      })
+      showNotifs("Input field(s) are empty")
     }
   }
   return (
@@ -39,7 +40,7 @@ export default function LoginPage() {
       <input ref={usernameRef} type="text" ></input>
       <input ref={passwordRef} type="password" ></input>
       <button type='submit' onClick={checkLoginHandler}>Click Me</button>
-      <Notif msg={notif}/>
+      <Notifs notifs={notifs}/>
     </>
   )
 }
