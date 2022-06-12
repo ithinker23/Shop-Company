@@ -9,12 +9,17 @@ export default function RegisterPage() {
 
   const backendURL = 'http://localhost:5000';
 
-  function checkRegisterHandler(){
+  async function checkRegisterHandler(){
     if (!(newUserNameRef.current.value === "" || newEmailRef.current.value === "" || newPasswordRef.current.value === "")) {
 
       const formData = { Username: newUserNameRef.current.value, Email: newEmailRef.current.value, Password: newPasswordRef.current.value}
+      try{
+      await Axios.post(backendURL + '/validify/register', formData)
 
-      Axios.post(backendURL + '/validify/register', formData)
+      }catch (err){
+
+      }
+
     }
   }
 

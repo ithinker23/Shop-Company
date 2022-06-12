@@ -1,0 +1,7 @@
+.notification{
+    opacity: 0%;
+    transition:all 1s;
+}
+.notifAnim{
+    opacity: 100%;
+}

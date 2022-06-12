@@ -7,17 +7,16 @@ module.exports = {
         var acc = await DB.findAccount("Username", req.body.Username)
         if (acc) {
             if (acc.Password == req.body.Password) {
-                res.sendStatus(200)
-                console.log('logged in')
+            res.status(200).json({msg: 'logging in'})
+
             } else {
-                res.sendStatus(400)
-                //send a notification
-                console.log('invalid password')
+                res.status(400).json({msg: 'invalid password'})
+
             }
         } else {
             //send a notification
-            res.sendStatus(400)
-            console.log('account does not exist')
+            res.status(400).json({msg: 'account does not exist'})
+
         }
     },
 
@@ -26,13 +25,17 @@ module.exports = {
         var accUsername = await DB.findAccount("Username", req.body.Username)
         if (accEmail == null && accUsername == null) {
             DB.createAccountDB(req.body)
-            console.log("registered")
+            res.status(200).json({msg: 'Account has been registered'});
+
         } else if (accEmail && accUsername) {
-            console.log("email and username are in use")
+            res.status(400).json({msg: "email and username are in use"});
+
         } else if (accEmail) {
-            console.log('Email is in use')
+            res.status(400).json({msg: 'Email is in use'});
+
         } else {
-            console.log('Username is in use')
+            res.status(400).json({msg: 'Username is in use'});  
+
         }
     }
 }
