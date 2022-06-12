@@ -1,11 +1,21 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState} from 'react';
 import Axios from 'axios';
+import Notifs from './Notifs'
 
 export default function RegisterPage() {
   
   var newUserNameRef=useRef()
   var newEmailRef=useRef()
   var newPasswordRef=useRef()
+
+  const [notifs, setNotifs] = useState([]);
+
+  function showNotifs(msg) {
+    setNotifs(prevNotifs => {
+      return [...prevNotifs, { text: msg }];
+    })
+  }
+
 
   const backendURL = 'http://localhost:5000';
 
@@ -14,12 +24,16 @@ export default function RegisterPage() {
 
       const formData = { Username: newUserNameRef.current.value, Email: newEmailRef.current.value, Password: newPasswordRef.current.value}
       try{
-      await Axios.post(backendURL + '/validify/register', formData)
-
+        var response = await Axios.post(backendURL + '/validify/register', formData)
+        showNotifs(response.data.msg)
+        window.location = "/login"
       }catch (err){
+        showNotifs(err.response.data.msg)
 
       }
 
+    }else{
+      showNotifs("Input field(s) are empty")
     }
   }
 
@@ -29,6 +43,7 @@ export default function RegisterPage() {
       <input ref={newEmailRef} type="email" ></input>
       <input ref={newPasswordRef} type="password" ></input>
       <button type='submit' onClick={checkRegisterHandler}>Click Me</button>
+      <Notifs notifs={notifs}/>
     </>
   )
 }

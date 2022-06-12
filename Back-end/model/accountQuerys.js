@@ -1,17 +1,4 @@
-const mysql = require('mysql');
-
-
-const DBConnection = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "",
-  database: "shop app"
-});
-
-DBConnection.connect(function (err) {
-  if (err) throw err;
-  console.log("Connected!");
-});
+const DBConnection = require('../model/DBConnection');
 
 function showDB() {
   DBConnection.query("SELECT * FROM accounts", (err, results) => {
@@ -20,7 +7,7 @@ function showDB() {
   })
 }
 
-function createAccountDB(account) {
+function createAccountDB(account) { 
   const d = new Date().toDateString().split(" ")
 
   switch (d[1]) {

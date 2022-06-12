@@ -34,8 +34,7 @@ module.exports = {
             res.status(400).json({msg: 'Email is in use'});
 
         } else {
-            res.status(400).json({msg: 'Username is in use'});  
-
+            res.status(400).json({msg: 'Username is in use'});
         }
     }
 }
