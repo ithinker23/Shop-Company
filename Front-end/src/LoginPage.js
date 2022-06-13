@@ -1,20 +1,14 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import Axios from 'axios';
 import Notifs from './Notifs'
 
 export default function LoginPage() {
   const backendURL = 'http://localhost:5000'
 
-  const [notifs, setNotifs] = useState([]);
-
   var usernameRef = useRef();
   var passwordRef = useRef();
 
-  function showNotifs(msg) {
-    setNotifs(prevNotifs => {
-      return [...prevNotifs, { text: msg }];
-    })
-  }
+  const notifsRef = useRef();
 
   async function checkLoginHandler(e) {
     if (!(usernameRef.current.value === "" || passwordRef.current.value === "")) {
@@ -24,15 +18,15 @@ export default function LoginPage() {
       try {
         var response = await Axios.post(backendURL + '/validify/login', formData)
 
-        showNotifs(response.data.msg)
+        notifsRef.current.showNotifs(response.data.msg)
 
         window.location = "/"
       } catch (err) {
-        showNotifs(err.response.data.msg)
+        notifsRef.current.showNotifs(err.response.data.msg)
       }
 
     } else {
-      showNotifs("Input field(s) are empty")
+      notifsRef.current.showNotifs("Input field(s) are empty")
     }
   }
   return (
@@ -40,7 +34,7 @@ export default function LoginPage() {
       <input ref={usernameRef} type="text" ></input>
       <input ref={passwordRef} type="password" ></input>
       <button type='submit' onClick={checkLoginHandler}>Click Me</button>
-      <Notifs notifs={notifs}/>
+      <Notifs ref={notifsRef} />
     </>
   )
 }

@@ -1,5 +1,4 @@
 .notification {
-    transition: all 1s;
     position: relative;
     padding: 20px;
     margin: 0 10px;
@@ -9,6 +8,8 @@
     animation: notifAnim 3s;
     opacity: 0%;
     font-size: 20px;
+    width:250px;
+    text-align: center;
 }
 
 .notifContainer {
@@ -52,21 +53,21 @@
     }
 }
 
-.allItems{
+.allItems {
     display: grid;
-  grid-template-columns: auto auto auto auto;
-  
+    grid-template-columns: auto auto auto auto;
+
 }
 
 .itemDiv {
     width: 200px;
     height: 200px;
-    margin:50px 50px 50px 50x;
+    margin: 50px 50px 50px 50x;
     text-align: center;
     margin: auto;
 }
 
 img {
     max-width: 80%;
-    max-height:80%;
+    max-height: 80%;
 }

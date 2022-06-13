@@ -1,17 +1,36 @@
-import React from 'react';
+import React, { forwardRef, useState, useImperativeHandle } from 'react';
+import Notif from './Notif'
+import { v4 as uuidv4 } from 'uuid';
 
-export default function Notifs({ notifs}) {
-  
+
+
+export default forwardRef(function Notifs(props, ref) {
+
+  const [notifs, setNotifs] = useState([]);
+
+  useImperativeHandle(ref, () => ({
+
+    showNotifs(msg) {
+
+        setNotifs(prevNotifs => {
+          var result = prevNotifs.filter(notif => notif.remove === false)
+          return [...result, { id: uuidv4(), text: msg, remove: false }];
+
+        })
+      },
+
+  }))
+
+
   return (
     <div className='notifContainer'>
-    {  
-    notifs.map(notif => {
-      return (
-      <div className="notifMoveAnim">
-      <div className="notification">{notif.text}</div>
-      </div>
-      )
-    })}
+      {
+        notifs.map(notif => {
+          return (
+            <Notif key={notif.id} notif={notif} />
+          )
+        })
+      }
     </div>
   )
-}
+})
