@@ -14,7 +14,7 @@ export default forwardRef(function Notifs(props, ref) {
 
         setNotifs(prevNotifs => {
           var result = prevNotifs.filter(notif => notif.remove === false)
-          return [...result, { id: uuidv4(), title: title, text: msg, remove: false }];
+          return [{ id: uuidv4(), title: title, text: msg, remove: false },...result];
 
         })
       },
@@ -24,6 +24,7 @@ export default forwardRef(function Notifs(props, ref) {
 
   return (
     <div className='notifContainer'>
+      <div className='gradient'></div>
       {
         notifs.map(notif => {
           return (

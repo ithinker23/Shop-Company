@@ -6,7 +6,7 @@ export default function Notif({ notif }, { key }) {
         setTimeout(() => {
             console.log('unmounted')
             notif.remove = true;
-        }, 2000)
+        }, 2500)
     })
 
 
