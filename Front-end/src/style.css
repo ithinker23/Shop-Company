@@ -9,8 +9,8 @@
     width: 300px;
     height: 50px;
     overflow: hidden;
-    color:#fff5fa;
-    font-family:'Arial';
+    color: #fff5fa;
+    font-family: 'Arial';
 }
 
 .notifContainer {
@@ -40,14 +40,16 @@
 .notificationDesc {
     text-align: center;
 }
-.gradient{
-    background: linear-gradient(white,rgba(255, 255, 255, 0));
+
+.gradient {
+    background: linear-gradient(white, rgba(255, 255, 255, 0));
     position: absolute;
-    height:15%;
+    height: 15%;
     width: 100%;
-    top:0%;
+    top: 0%;
     z-index: 2;
 }
+
 @keyframes notifScroll {
     0% {
         height: 0px;
@@ -89,4 +91,139 @@
 img {
     max-width: 80%;
     max-height: 80%;
+}
+
+.textField {
+    position: relative;
+    margin-bottom: 25px;
+}
+
+input {
+    margin-top: 25px;
+    font-size: 18px;
+    padding: 10px 10px 10px 5px;
+    display: block;
+    width: 300px;
+    border: none;
+    border-bottom: 1px solid #757575;
+    background-color: #f3f2f2;
+}
+
+input:focus {
+    outline: none;
+}
+
+label {
+    color: rgb(0, 0, 0);
+    font-size: 20px;
+    font-weight: normal;
+    position: absolute;
+    pointer-events: none;
+    left: 5px;
+    top: 10px;
+    transition: 0.2s ease all;
+    -moz-transition: 0.2s ease all;
+    -webkit-transition: 0.2s ease all;
+    font-family: monospace;
+
+}
+
+input:focus~label,
+input:valid~label {
+    top: -20px;
+    font-size: 14px;
+    color: #5264AE;
+}
+
+.bar {
+    position: relative;
+    display: block;
+    width: 315px;
+}
+
+.bar:before,
+.bar:after {
+    content: '';
+    height: 2px;
+    width: 0;
+    bottom: 1px;
+    position: absolute;
+    background: #5264AE;
+    transition: 0.2s ease all;
+    -moz-transition: 0.2s ease all;
+    -webkit-transition: 0.2s ease all;
+}
+
+.bar:before {
+    left: 50%;
+}
+
+.bar:after {
+    right: 50%;
+}
+
+input:focus~.bar:before,
+input:focus~.bar:after {
+    width: 50%;
+}
+
+@keyframes inputHighlighter {
+    from {
+        background: #5264AE;
+    }
+
+    to {
+        width: 0;
+        background: transparent;
+    }
+}
+
+
+
+
+.button {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    display: inline-flex;
+    height: 50px;
+    width: 170px;
+    border: 1px solid #000000;
+    margin: auto;
+    color: #000000;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-size: .8em;
+    letter-spacing: 1.5px;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    user-select: none;
+}
+
+.button .buttonText {
+    position: relative;
+    transition: all .35s ease-Out;
+}
+
+.buttonText {
+    font-size: 17px;
+}
+
+.slide {
+    width: 100%;
+    height: 100%;
+    left: -200px;
+    background: #252525;
+    position: absolute;
+    transition: all .35s ease-Out;
+    bottom: 0;
+}
+
+.button:hover .slide {
+    left: 0;
+}
+
+.button:hover .buttonText {
+    color: #ffffff;
 }
