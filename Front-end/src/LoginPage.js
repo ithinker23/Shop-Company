@@ -18,15 +18,15 @@ export default function LoginPage() {
       try {
         var response = await Axios.post(backendURL + '/validify/login', formData)
 
-        notifsRef.current.showNotifs(response.data.msg)
+        notifsRef.current.showNotifs(response.data.title,response.data.msg)
 
         window.location = "/"
       } catch (err) {
-        notifsRef.current.showNotifs(err.response.data.msg)
+        notifsRef.current.showNotifs(err.response.data.title,err.response.data.msg)
       }
 
     } else {
-      notifsRef.current.showNotifs("Input field(s) are empty")
+      notifsRef.current.showNotifs("Login Failed","Input field(s) are empty")
     }
   }
   return (

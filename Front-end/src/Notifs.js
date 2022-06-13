@@ -10,11 +10,11 @@ export default forwardRef(function Notifs(props, ref) {
 
   useImperativeHandle(ref, () => ({
 
-    showNotifs(msg) {
+    showNotifs(title, msg) {
 
         setNotifs(prevNotifs => {
           var result = prevNotifs.filter(notif => notif.remove === false)
-          return [...result, { id: uuidv4(), text: msg, remove: false }];
+          return [...result, { id: uuidv4(), title: title, text: msg, remove: false }];
 
         })
       },

@@ -12,7 +12,10 @@ export default function Notif({ notif }, { key }) {
 
     return (
         <div id={key} className="notifMoveAnim">
-            <div className="notification">{notif.text}</div>
+            <div className="notification">
+                <div className='notificationTitle'>{notif.title}: </div>
+                <div className='notificationDesc'>{notif.text} </div>
+                </div>
         </div>
     )
 }
