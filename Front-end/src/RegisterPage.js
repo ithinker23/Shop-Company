@@ -33,17 +33,17 @@ export default function RegisterPage() {
   return (
     <>
       <div className='textField'>
-        <input ref={newUserNameRef} type="text" />
+        <input class="textInput" ref={newUserNameRef} type="text" />
         <span className="bar"></span>
         <label> Username </label>
       </div>
       <div className='textField'>
-        <input ref={newEmailRef} type="email" />
+        <input class="textInput" ref={newEmailRef} type="email" />
         <span className="bar"></span>
         <label> Email </label>
       </div>
       <div className='textField'>
-        <input ref={newPasswordRef} type="password" />
+        <input class="textInput" ref={newPasswordRef} type="password" />
         <span className="bar"></span>
         <label> Password </label>
       </div>

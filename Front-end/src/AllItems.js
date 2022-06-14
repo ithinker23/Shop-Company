@@ -5,23 +5,23 @@ import Notifs from './Notifs';
 
 export default function AllItems() {
 
-    const [items, setItems] = useState([]);
-    const backendURL = 'http://localhost:5000'
-
     const notifsRef = useRef();
 
-    const [filters, setFilters] = useState([{name:"Price", value:[]},{name:"Class", value:["Shirts","Pants"]},{name:"Colours", values:["Brown","Black"]}]);
+    const [items, setItems] = useState([]);
+    const backendURL = 'http://localhost:5000';
+
 
     async function getItems() {
-        var Items = await Axios.get(backendURL + "/inventory/getItems", filters);
+        var Items = await Axios.get(backendURL + "/inventory/getItems");
         setItems(Items.data.items)
     }
 
     useEffect(() => {
         getItems();
-    }, [filters])
+    })
 
     return (
+        <>
         <div className='allItems'>
             {items.map(item => {
                 return <>
@@ -31,5 +31,6 @@ export default function AllItems() {
             })
             }
         </div>
+        </>
     )
 }
