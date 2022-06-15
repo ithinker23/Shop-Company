@@ -74,15 +74,16 @@
     }
 }
 
-.itemDiv {
-    text-align: center;
-    width: 400px;
-    height: 400px;
+.itemImagePreview {
+    width: 100%;
+    height: 100%;
+    background-color: rgb(236, 236, 236);
 }
 
-img {
-    width: 80%;
-    height: 80%;
+.itemImage {
+    width: 100%;
+    height: 100%;
+    text-align: center;
 }
 
 .textField {
@@ -221,14 +222,16 @@ label {
     color: #ffffff;
 }
 
-.header {
-    height: 75px;
-    background-color: rgba(189, 189, 189, 0.999);
+.headerLinks {
+    height: 80px;
+    margin: 0 0 0 10px;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: right;
     text-align: center;
     align-items: center;
     vertical-align: middle;
+    width: 100%;
+    padding-right: 30px;
 }
 
 body {
@@ -246,24 +249,48 @@ body {
 
 .footer {
     height: 75px;
-    background-color: rgba(189, 189, 189, 0.999);
     display: flex;
     text-align: center;
     font-family: 'Arial';
-}
-
-.links:hover {
-    border-bottom-style: solid;
+    box-shadow: #000000;
 }
 
 .linkTitle {
     padding-top: 25px;
 }
 
+.itemDiv {
+    font-size: 1vw;
+    width: 100%;
+    max-width: 500px;
+    margin: auto;
+    font-family: "Courier New";
+    border-bottom: 1px solid black;
+}
+
+.itemDivDesc {
+    height: 20%;
+    border-bottom: 1px solid black;
+}
+
+.itemDivColours {
+    margin-top: 10px;
+}
+
+.itemDivClass {
+    color: grey;
+}
+
+.itemDivTitle {
+    display: block;
+}
+
+.itemDivPrice {
+    float: right;
+}
+
 .itemDiv:hover {
-    background-color: #e8e8e8;
     cursor: pointer;
-    text-decoration: underline;
 }
 
 .filterContainer {
@@ -274,23 +301,96 @@ body {
     display: block;
     border-right: 2px solid gray;
     border-radius: 2px;
-    min-width: 250px
+    min-width: 200px;
+    border-bottom: 2px solid black;
+    border-top: 1px solid black;
 }
 
 .allItems {
     display: grid;
     grid-template-columns: auto auto auto;
-    flex-grow: 1;
+    width: 100%;
+    height: 100%;
+    gap: 50px;
+    margin-top: 40px;
+    padding: 0 50px 0 50px;
 }
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 1200px) {
     .allItems {
         grid-template-columns: auto auto;
     }
+
+    .itemDiv {
+        font-size: 1.4vw;
+    }
+
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 880px) {
     .allItems {
+        grid-template-columns: auto;
+        padding: 0;
+    }
+
+    .homePage {
+        display: block !important;
+    }
+
+    .filterContainer {
+        width: 100%;
+        margin: 0;
+    }
+
+    .filterGroup {
+        display: flex;
+    }
+
+    .itemDiv {
+        font-size: 20px;
+    }
+
+    .filterButton {
+        width: 170px !important;
+        float: right;
+    }
+}
+
+@media only screen and (max-width: 640px) {
+    .itemDiv {
+        font-size: 2.6vw;
+    }
+}
+
+@media only screen and (max-width: 410px) {
+    .logoImageContainer {
+        display: none;
+    }
+
+    .headerLinks {
+        justify-content: center;
+        padding: 0;
+    }
+
+    .filterGroup {
+        display: grid;
+        grid-template-columns: auto auto;
+    }
+
+    .filterCheckBox {
+        width: 50% !important;
+    }
+    .links{
+        width:30%;
+        font-size: 15px;
+    }
+
+}
+
+@media only screen and (max-width: 355px) {
+
+    .filterGroup {
+        display: grid;
         grid-template-columns: auto;
     }
 }
@@ -304,6 +404,61 @@ body {
 .filterCheckBox {
     height: 50px;
     width: 100%;
-    margin:auto;
-    font-size:30px;
+    margin: auto;
+    font-size: 20px;
+    margin-left: 20px;
+}
+
+.filterGroupHeader {
+    font-size: 25px;
+    margin-bottom: 10px;
+    text-align: center;
+    border-bottom: 1px solid black;
+    border-top: 1px solid black;
+    padding: 5px 0 5px 0;
+}
+
+.filterGroup {
+    padding-top: 20px;
+}
+
+.logoImageContainer {
+    height: 80px;
+    width: 80px;
+    margin: 0 0 0 10px;
+    text-align: center;
+}
+
+.logoImage {
+    margin-top: 10px;
+    height: 80%;
+    width: 80%;
+}
+
+.header {
+    display: flex;
+}
+
+.filterButton {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.inputCheckboxLabel {
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.headerShadow {
+    height: 20px;
+    width: 100%;
+    background: linear-gradient(rgba(0, 0, 0, 0.165), rgba(255, 255, 255, 0));
+    margin-bottom: -20px;
+}
+
+.footerShadow {
+    height: 20px;
+    width: 100%;
+    background: linear-gradient(rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.165));
+    margin-top: -20px;
 }
