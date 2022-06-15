@@ -8,10 +8,10 @@ export default function Home() {
   const [items, setItems] = useState([]);
   const backendURL = 'http://localhost:5000';
 
-  const [allFilters, setAllFilters] = useState({Classes: ["Shirt", "Pants"], Colours: ["Brown","Black"]});
+  const [allFilters, setAllFilters] = useState({Classes:[], Colours:[]});
 
   async function getItems(allFilters) {
-      var Items = await Axios.get(backendURL + "/inventory/getItems", allFilters);
+      var Items = await Axios.post(backendURL + "/inventory/getItems", allFilters);
       setItems(Items.data.items)
   }
 

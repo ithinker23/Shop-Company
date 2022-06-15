@@ -10,38 +10,37 @@ function showDB() {
 //{Classes: ["Shirt", "Pants"], Colours: ["Brown","Black"]}
 function getItems(filters) {
     return new Promise((resolve, reject) => {
+        console.log(filters)
         var query = "";
 
-        for (var i = 0; i < filters.Classes.length(); i++) {
+        for (var i = 0; i < filters.Classes.length; i++) {
             if (i == 0) {
-                query += "Class = " + filter.Classes[i];
+                query += "Class = " + filters.Classes[i];
             } else {
-                query += "OR" + "Class = " + filter.Classes[i];
+                query += " OR " + "Class = " + filters.Classes[i];
             }
         }
 
-        if (filters.Classes.length > 0) {
-            query += "OR"
-        }
-
-        for (var i = 0; i < filters.Colours.length(); i++) {
+        for (var i = 0; i < filters.Colours.length; i++) {
             if (i == 0) {
-                query = "Colours = " + filter.Classes[i];
+
+                if (filters.Classes.length > 0) {
+                    query += " OR "
+                }
+                query += "Colours = " + filters.Classes[i];
+
             } else {
-                query = query + "OR" + "Colours = " + filter.Classes[i];
+                query += " OR " + "Colours = " + filters.Classes[i];
             }
         }
 
         console.log(query);
 
-        DBConnection.query("SELECT * FROM items", (err, res) => {
-          if (err) reject(err)
-          resolve(res)
-          })
+        DBConnection.query("SELECT * FROM items WHERE " + query, (err, res) => {
+            if (err) reject(err)
+            resolve(res)
         })
-
-
-        showDB();
+    })
 }
 
 module.exports = { getItems }
