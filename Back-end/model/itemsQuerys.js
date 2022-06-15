@@ -1,3 +1,4 @@
+const { query } = require('../model/DBConnection');
 const DBConnection = require('../model/DBConnection');
 
 function showDB() {
@@ -10,33 +11,36 @@ function showDB() {
 //{Classes: ["Shirt", "Pants"], Colours: ["Brown","Black"]}
 function getItems(filters) {
     return new Promise((resolve, reject) => {
-        console.log(filters)
-        var query = "";
+        var query = ""
+
+        if (filters.Classes.length > 0 || filters.Colours.length > 0) query = " WHERE ";
 
         for (var i = 0; i < filters.Classes.length; i++) {
-            if (i == 0) {
-                query += "Class = " + filters.Classes[i];
-            } else {
-                query += " OR " + "Class = " + filters.Classes[i];
-            }
+
+            if (i != 0) query += "OR ";
+
+            query += "Class = " + "'" + filters.Classes[i] + "' ";
         }
+
+       
 
         for (var i = 0; i < filters.Colours.length; i++) {
-            if (i == 0) {
 
-                if (filters.Classes.length > 0) {
-                    query += " OR "
-                }
-                query += "Colours = " + filters.Classes[i];
+            if (i != 0){ 
+
+                query += "OR ";
 
             } else {
-                query += " OR " + "Colours = " + filters.Classes[i];
+
+                if (filters.Classes.length > 0) query += " OR ";
             }
+
+            query += "Colours = " + "'" + filters.Colours[i] + "' ";
+
         }
 
-        console.log(query);
-
-        DBConnection.query("SELECT * FROM items WHERE " + query, (err, res) => {
+        console.log("SELECT * FROM items" + query)
+        DBConnection.query("SELECT * FROM items" + query, (err, res) => {
             if (err) reject(err)
             resolve(res)
         })
