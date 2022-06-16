@@ -70,9 +70,6 @@ export default function Filter({ handleSettingFilters }) {
           </div>
         </div>
 
-
-
-
         <div className='filterGroupHeader'>COLOURS</div>
         <div className='filterGroup'>
           <div className='filterCheckBox'>
@@ -88,7 +85,6 @@ export default function Filter({ handleSettingFilters }) {
             <div className='inputCheckboxLabel'>Brown</div>
           </div>
         </div>
-
 
         <div className='button filterButton' onClick={formatFilters}>
           <div className="slide"></div>
