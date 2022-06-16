@@ -73,13 +73,15 @@
         opacity: 0%;
     }
 }
-
+.itemImagePreviewContainer{
+    height:80%;
+    object-fit: fill;
+}
 .itemImagePreview {
     width: 100%;
     height: 100%;
     background-color: rgb(236, 236, 236);
     user-select: none;
-    object-fit: fill;
 }
 
 .itemImage {
@@ -255,12 +257,13 @@ body {
 }
 
 .itemDiv {
-    font-size: 1vw;
+    font-size: 20px;
     width: 100%;
     max-width: 500px;
     margin: auto;
     font-family: "Courier New";
     border-bottom: 1px solid black;
+    height:550px;
 }
 
 .itemDivDesc {
@@ -296,7 +299,7 @@ body {
     display: block;
     border-right: 2px solid gray;
     border-radius: 2px;
-    min-width: 200px;
+    width: 240px;
     border-bottom: 2px solid black;
     border-top: 1px solid black;
 }
@@ -312,18 +315,14 @@ body {
     margin-bottom: 40px;
 }
 
-@media only screen and (max-width: 1200px) {
+@media only screen and (max-width: 1370px) {
     .allItems {
         grid-template-columns: auto auto;
     }
 
-    .itemDiv {
-        font-size: 1.4vw;
-    }
-
 }
 
-@media only screen and (max-width: 880px) {
+@media only screen and (max-width: 1000px) {
     .allItems {
         grid-template-columns: auto;
         padding: 0;
@@ -342,23 +341,13 @@ body {
         display: flex;
     }
 
-    .itemDiv {
-        font-size: 20px;
-    }
-
     .filterButton {
         width: 170px !important;
         float: right;
     }
 }
 
-@media only screen and (max-width: 640px) {
-    .itemDiv {
-        font-size: 2.6vw;
-    }
-}
-
-@media only screen and (max-width: 410px) {
+@media only screen and (max-width: 490px) {
     .logoImageContainer {
         display: none;
     }
@@ -367,7 +356,9 @@ body {
         justify-content: center;
         padding: 0;
     }
-
+    .headerLogout, .headerUsername{
+        font-size:20px !important;
+    }
     .filterGroup {
         display: grid;
         grid-template-columns: auto auto;
@@ -379,13 +370,14 @@ body {
 
     .links {
         width: 30%;
-        font-size: 15px;
+        font-size: 20px;
     }
-
 }
 
 @media only screen and (max-width: 355px) {
-
+    .headerUsername{
+        display: none;
+    }
     .filterGroup {
         display: grid;
         grid-template-columns: auto;
@@ -461,13 +453,13 @@ body {
 }
 
 .headerUsername {
-    font-size: 25px;
+    font-size: 20px;
 }
 
 .headerLogout {
     user-select: none;
     cursor: pointer;
-    font-size: 25px;
+    font-size: 20px;
     margin-left: 30px;
 }
 
@@ -501,15 +493,15 @@ body {
     grid-template-areas: "image name"
         "desc desc";
     grid-template-columns: auto 600px;
-    grid-template-rows: 50% 50%;
+    grid-template-rows: 55% 45%;
     font-family: monospace;
     border: 2px solid black;
     overflow: hidden;
 }
 
 .itemPopupImage {
-    width: 100%;
-    height: 100%;
+    object-fit: fill;
+    margin: auto;
 }
 
 .itemPopupName {
@@ -517,11 +509,15 @@ body {
     text-align: center;
     font-size: 50px;
     padding-top: 25%;
+    border-bottom: 1px solid black;
 
 }
 
 .itemPopupImageContainer {
     grid-area: image;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+
 }
 
 .itemPopupDesc {

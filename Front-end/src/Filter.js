@@ -29,6 +29,19 @@ export default function Filter({ handleSettingFilters }) {
     handleSettingFilters(filters)
   }
 
+  function removeFilters() {
+
+    shirtsInputRef.current.checked = false
+    walletInputRef.current.checked = false
+    pantsInputRef.current.checked = false
+    shoesInputRef.current.checked = false
+    blackInputRef.current.checked = false
+    orangeInputRef.current.checked = false
+    brownInputRef.current.checked = false
+
+    handleSettingFilters({ Classes: [], Colours: [] })
+
+  }
   return (
     <>
       <div className="filterContainer">
@@ -74,6 +87,10 @@ export default function Filter({ handleSettingFilters }) {
         </div>
 
         <div className='button filterButton' onClick={formatFilters}>
+          <div className="slide"></div>
+          <div className='buttonText'>Apply Filters</div>
+        </div>
+        <div className='button filterButton' onClick={removeFilters}>
           <div className="slide"></div>
           <div className='buttonText'>Apply Filters</div>
         </div>
