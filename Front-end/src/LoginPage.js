@@ -32,12 +32,12 @@ export default function LoginPage() {
   return (
     <>
       <div className='textField'>
-        <input class="textInput" ref={usernameRef} type="text" />
+        <input className="textInput" ref={usernameRef} type="text" />
         <span className="bar"></span>
         <label> Username </label>
       </div>
       <div className='textField'>
-        <input class="textInput" ref={passwordRef} type="password" />
+        <input className="textInput" ref={passwordRef} type="password" />
         <span className="bar"></span>
         <label> Password </label>
       </div>

@@ -108,25 +108,18 @@
 }
 
 label {
-    color: rgb(0, 0, 0);
-    font-size: 20px;
     font-weight: normal;
     position: absolute;
     pointer-events: none;
     left: 5px;
-    top: 10px;
     transition: 0.2s ease all;
     -moz-transition: 0.2s ease all;
     -webkit-transition: 0.2s ease all;
     font-family: monospace;
-
-}
-
-.textInput:focus~label,
-.textInput:valid~label {
     top: -20px;
     font-size: 14px;
     color: #5264AE;
+
 }
 
 .bar {
@@ -461,4 +454,7 @@ body {
     width: 100%;
     background: linear-gradient(rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.165));
     margin-top: -20px;
+}
+.headerUsername{
+margin-left:50px;
 }

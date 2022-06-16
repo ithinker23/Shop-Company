@@ -7,15 +7,16 @@ export default function RegisterPage() {
   var newUserNameRef = useRef()
   var newEmailRef = useRef()
   var newPasswordRef = useRef()
+  var newFirstNameRef = useRef();
 
   const notifsRef = useRef();
 
   const backendURL = 'http://localhost:5000';
 
   async function checkRegisterHandler() {
-    if (!(newUserNameRef.current.value === "" || newEmailRef.current.value === "" || newPasswordRef.current.value === "")) {
+    if (!(newUserNameRef.current.value === "" || newEmailRef.current.value === "" || newPasswordRef.current.value === "" || newFirstNameRef.current.value === "")) {
 
-      const formData = { Username: newUserNameRef.current.value, Email: newEmailRef.current.value, Password: newPasswordRef.current.value }
+      const formData = { Username: newUserNameRef.current.value, Email: newEmailRef.current.value, Password: newPasswordRef.current.value, FirstName: newFirstNameRef.current.value }
       try {
         var response = await Axios.post(backendURL + '/validify/register', formData)
         notifsRef.current.showNotifs(response.data.title, response.data.msg)
@@ -36,6 +37,11 @@ export default function RegisterPage() {
         <input class="textInput" ref={newUserNameRef} type="text" />
         <span className="bar"></span>
         <label> Username </label>
+      </div>
+      <div className='textField'>
+        <input class="textInput" ref={newFirstNameRef} type="text" />
+        <span className="bar"></span>
+        <label> First Name </label>
       </div>
       <div className='textField'>
         <input class="textInput" ref={newEmailRef} type="email" />

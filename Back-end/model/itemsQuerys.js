@@ -22,17 +22,15 @@ function getItems(filters) {
             query += "Class = " + "'" + filters.Classes[i] + "' ";
         }
 
-       
-
         for (var i = 0; i < filters.Colours.length; i++) {
 
-            if (i != 0){ 
+            if (i != 0) {
 
                 query += "OR ";
 
             } else {
 
-                if (filters.Classes.length > 0) query += " OR ";
+                if (filters.Classes.length > 0) query += " AND ";
             }
 
             query += "Colours = " + "'" + filters.Colours[i] + "' ";
