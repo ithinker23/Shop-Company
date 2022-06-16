@@ -17,11 +17,10 @@ export default function LoginPage() {
       const formData = { Username: usernameRef.current.value, Password: passwordRef.current.value }
 
       try {
-        var response = await Axios.post(backendURL + '/validify/login', formData)
-
+        var response = await Axios.post(backendURL + '/validify/login', formData, { withCredentials: true })
+        console.log(response.headers)
         notifsRef.current.showNotifs(response.data.title, response.data.msg)
 
-        cookie.set("LoggedIn", true);
 
         window.location = "/user/" + usernameRef.current.value;
       } catch (err) {

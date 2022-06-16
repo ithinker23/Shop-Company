@@ -78,6 +78,7 @@
     width: 100%;
     height: 100%;
     background-color: rgb(236, 236, 236);
+    user-select: none;
 }
 
 .itemImage {
@@ -459,16 +460,52 @@ body {
 }
 
 .headerUsername {
-    margin-left: 50px;
     font-size: 25px;
 }
 
 .headerLogout {
     user-select: none;
     cursor: pointer;
+    font-size: 25px;
+    margin-left: 30px;
 }
 
-.headerLogout {
-    margin-left: 50px;
-    font-size: 25px;
+
+.cartImage{
+    width:40%;
+    height:40%;
+}
+.cartImageContainer{
+    width:100px;
+}
+.itemPopupPreviewContainer{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    background-color: rgba(0,0,0,0.3);
+}
+.itemPopupPreview{
+    margin:6% auto auto auto;
+    width:60%;
+    height: 75%;
+    background-color: rgb(235, 234, 234);
+    display: grid;
+    grid-template-areas: "image name"
+    "desc desc";
+    grid-template-columns:auto auto;
+}
+.itemPopupImage{
+    grid-area: image ;
+    object-fit: fill;
+}
+.itemPopupName{
+    grid-area: name ;
+}
+.itemPopupImageContainer{
+}
+.itemPopupDesc{
+grid-area: desc;
 }

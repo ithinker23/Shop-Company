@@ -12,6 +12,13 @@ export default function Item({ item }) {
           <div className='itemDivColours'>{item.Colours}</div>
         </div>
       </div>
+      <div className='itemPopupPreviewContainer'>
+        <div className='itemPopupPreview'>
+          <div className='itemPopupImageContainer'>IMAGE</div>
+          <div className='itemPopupName'>{item.Name}</div>
+          <div className='itemPopupDesc'>Desc</div>
+        </div>
+      </div>
     </>
 
   )

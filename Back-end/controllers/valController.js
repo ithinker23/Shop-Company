@@ -1,13 +1,19 @@
 const DB = require('../model/accountQuerys')
+const bcrypt = require('bcrypt')
 
 module.exports = {
 
     validifyLogin: async (req, res) => {
 
         var acc = await DB.findAccount("Username", req.body.Username)
+
         if (acc) {
             if (acc.Password == req.body.Password) {
-            res.status(200).json({title: 'Login Complete', msg: 'logging in'})
+
+            bcrypt.hash(acc.Username, 10).then((hash)=> {
+                res.status(200).cookie('LoggedInAs', hash).json({title: 'Login Complete', msg: 'logging in'})
+            })
+  
 
             } else {
                 res.status(400).json({title: 'Login Failed', msg: 'invalid password'})

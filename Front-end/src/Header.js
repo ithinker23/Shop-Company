@@ -2,6 +2,9 @@ import React, { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import logo from "./logo.png"
 import cookie from 'js-cookie'
+import cart from './cart.png'
+
+
 export default function Header({ isAuth, username }) {
 
   const headerLinksRef = useRef();
@@ -44,14 +47,14 @@ export default function Header({ isAuth, username }) {
         <div className='headerUsername'>
           Welcome, {username}
         </div>
-        <div className='headerUsername'>
-          CART 
-        </div>
         <div className='headerLogout' onClick={() => {
-          cookie.set("LoggedIn", false);
+          cookie.remove("LoggedInAs");
           window.location = "/";
         }}>
           Log Out
+        </div>
+        <div className='cartImageContainer'>
+          <img className='cartImage' src={cart} alt="CART"></img>
         </div>
       </div>
     </div>

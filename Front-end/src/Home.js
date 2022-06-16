@@ -22,11 +22,7 @@ export default function Home() {
   }
   
   async function getUserDetails(){
-    try{
-    var logged = await Axios.post(backendURL + '/cookieAuth/home', {username:searchParams.username})
-    } catch (err) {
-
-    }
+    return null;
   } 
 
   useEffect(() => {
