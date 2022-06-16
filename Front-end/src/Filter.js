@@ -96,7 +96,7 @@ export default function Filter({ handleSettingFilters }) {
         </div>
         <div className='button filterButton' onClick={removeFilters}>
           <div className="slide"></div>
-          <div className='buttonText'>Apply Filters</div>
+          <div className='buttonText'> Remove Filters</div>
         </div>
       </div>
     </>
