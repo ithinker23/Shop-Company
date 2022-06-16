@@ -86,11 +86,11 @@ export default function Filter({ handleSettingFilters }) {
           </div>
         </div>
 
-        <div className='button filterButton' onClick={formatFilters}>
+        <div className='button filterButton applyFilterButton' onClick={formatFilters}>
           <div className="slide"></div>
           <div className='buttonText'>Apply Filters</div>
         </div>
-        <div className='button filterButton' onClick={removeFilters}>
+        <div className='button filterButton removeFilterButton' onClick={removeFilters}>
           <div className="slide"></div>
           <div className='buttonText'> Remove Filters</div>
         </div>

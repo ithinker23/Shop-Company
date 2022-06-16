@@ -7,7 +7,7 @@ export default function Item({ item }) {
 
   return (
     <>
-      <div className='itemDiv' onClick={()=>{ console.log("OPEN"); itemPreviewRef.current.style.display = "block";}}>
+      <div className='itemDiv' onClick={()=>{ itemPreviewRef.current.style.display = "block";}}>
         <div className='itemImagePreviewContainer'>
         <img className="itemImagePreview" src={item.Photo} alt='of product'></img>
         </div>
@@ -20,8 +20,8 @@ export default function Item({ item }) {
 
       <div  ref={itemPreviewRef} className='itemPopupPreviewContainer'>
         <div className='itemPopupPreview'>
-          <div className='itemPreviewClose' onClick={()=>{itemPreviewRef.current.style.display = "none";}}>x</div>
-          <div className='itemPopupImageContainer'><img className="itemPopupImage" src={item.Photo} alt="PHOTO"></img></div>
+        <div className='itemPopupClose' onClick={()=>{itemPreviewRef.current.style.display = "none";}}>x</div>
+          <div className='itemPopupImageContainer'><img className="itemPopupImage" src={item.Photo} alt="itemPhoto"></img></div>
           <div className='itemPopupName'>{item.Name}
           <div className='itemPopupPrice'>${item.Price}</div>
           <div className='itemPopupClass'>{item.Class}</div>

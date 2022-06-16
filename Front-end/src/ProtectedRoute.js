@@ -10,7 +10,7 @@ export default function ProtectedRoute({ ...rest }) {
 
   useEffect(() => {
     async function authenticateCookies() {
-      var response = await Axios.post(backendURL + "/cookieAuth/" + searchParams.username, { Username: searchParams.username }, { withCredentials: true })
+      var response = await Axios.post(backendURL + "/cookieAuth/", { Username: searchParams.username }, { withCredentials: true })
       if (response.data.error) {
 
         window.location = "/";

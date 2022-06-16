@@ -73,10 +73,12 @@
         opacity: 0%;
     }
 }
-.itemImagePreviewContainer{
-    height:80%;
+
+.itemImagePreviewContainer {
+    height: 80%;
     object-fit: fill;
 }
+
 .itemImagePreview {
     width: 100%;
     height: 100%;
@@ -245,11 +247,10 @@ body {
 }
 
 .footer {
-    height: 75px;
+    height:100px;
     display: flex;
     text-align: center;
     font-family: 'Arial';
-    box-shadow: #000000;
 }
 
 .linkTitle {
@@ -263,7 +264,7 @@ body {
     margin: auto;
     font-family: "Courier New";
     border-bottom: 1px solid black;
-    height:550px;
+    height: 550px;
 }
 
 .itemDivDesc {
@@ -313,75 +314,6 @@ body {
     margin-top: 40px;
     padding: 0 50px 0 50px;
     margin-bottom: 40px;
-}
-
-@media only screen and (max-width: 1370px) {
-    .allItems {
-        grid-template-columns: auto auto;
-    }
-
-}
-
-@media only screen and (max-width: 1000px) {
-    .allItems {
-        grid-template-columns: auto;
-        padding: 0;
-    }
-
-    .homePage {
-        display: block !important;
-    }
-
-    .filterContainer {
-        width: 100%;
-        margin: 0;
-    }
-
-    .filterGroup {
-        display: flex;
-    }
-
-    .filterButton {
-        width: 170px !important;
-        float: right;
-    }
-}
-
-@media only screen and (max-width: 490px) {
-    .logoImageContainer {
-        display: none;
-    }
-
-    .headerLinks {
-        justify-content: center;
-        padding: 0;
-    }
-    .headerLogout, .headerUsername{
-        font-size:20px !important;
-    }
-    .filterGroup {
-        display: grid;
-        grid-template-columns: auto auto;
-    }
-
-    .filterCheckBox {
-        width: 50% !important;
-    }
-
-    .links {
-        width: 30%;
-        font-size: 20px;
-    }
-}
-
-@media only screen and (max-width: 355px) {
-    .headerUsername{
-        display: none;
-    }
-    .filterGroup {
-        display: grid;
-        grid-template-columns: auto;
-    }
 }
 
 .homePage {
@@ -480,7 +412,7 @@ body {
     width: 100%;
     height: 100%;
     z-index: 10;
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0.649);
     display: none;
 }
 
@@ -488,11 +420,11 @@ body {
     margin: 6% auto auto auto;
     width: 60%;
     height: 75%;
-    background-color: rgb(235, 234, 234);
+    background-color: rgb(230, 230, 230);
     display: grid;
     grid-template-areas: "image name"
         "desc desc";
-    grid-template-columns: auto 600px;
+    grid-template-columns: auto 60%;
     grid-template-rows: 55% 45%;
     font-family: monospace;
     border: 2px solid black;
@@ -507,8 +439,8 @@ body {
 .itemPopupName {
     grid-area: name;
     text-align: center;
-    font-size: 50px;
-    padding-top: 25%;
+    font-size: 2vw;
+    padding-top: 22%;
     border-bottom: 1px solid black;
 
 }
@@ -522,34 +454,227 @@ body {
 
 .itemPopupDesc {
     grid-area: desc;
-    font-size: 20px;
-    padding:50px;
+    font-size: 1.5vw;
+    padding: 50px;
 }
 
 .itemPopupClass {
     text-align: right;
-    margin-right: 95px;
-    font-size: 20px;
+    margin-right: 25%;
+    font-size: 1.3vw;
     text-decoration: underline;
     color: grey;
 }
 
-.itemPreviewClose {
+.itemPopupPrice {
+    font-size: 1.3vw;
+    text-align: right;
+    margin-right: 25%;
+}
+
+.itemPopupClose {
+    display: block;
     position: fixed;
-    top: 12%;
-    right: 20.5%;
+    top: 3%;
+    right: 3%;
     font-size: 25px;
     user-select: none;
     cursor: pointer;
+    color: white;
 }
 
-.itemPopupPrice {
-    font-size:35px;
-    text-align: right;
-    margin-right: 95px;
+.itemPopupImage {
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
 }
-.itemPopupImage{
-        max-width: 100%;
-        max-height: 100%;
+
+@media only screen and (max-width: 1370px) {
+    .allItems {
+        grid-template-columns: auto auto;
+    }
+
+    .itemPopupClass,
+    .itemPopupPrice {
+        font-size: 2vw;
+        margin-right: 20%;
+    }
+
+    .itemPopupName {
+        font-size: 2.5vw;
+        padding-top: 23%;
+    }
+
+    .itemPopupPreview {
+        width: 80%;
+    }
+
+    .itemPopupDesc {
+        font-size: 2vw;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    .allItems {
+        grid-template-columns: auto;
+        padding: 0;
+    }
+
+    .homePage {
         display: block;
+    }
+
+    .filterContainer {
+        width: 100%;
+        margin: 0;
+    }
+
+    .filterGroup {
+        display: flex;
+    }
+
+    .filterButton {
+        width: 170px;
+        float: right;
+        margin: 0 10px 10px 10px;
+    }
+
+    .removeFilterButton {
+        float: left;
+        margin: 0 10px 10px 10px;
+    }
+
+    .itemPopupClass,
+    .itemPopupPrice {
+        font-size: 2.5vw;
+        margin-right: 22%;
+    }
+
+    .itemPopupName {
+        font-size: 3.5vw;
+        padding-top: 25%;
+    }
+
+    .itemPopupPreview {
+        width: 90%;
+    }
+
+    .itemPopupDesc {
+        font-size: 2.5vw;
+    }
+    .itemPopupClose {
+        top:1%;
+        right:2%;
+    }
+}
+
+@media only screen and (max-width: 770px) {
+    .itemPopupPreview {
+        grid-template-areas: "image"
+            "name"
+            "desc";
+        grid-template-rows: 30%;
+        grid-template-columns: auto;
+    }
+
+    .itemPopupName {
+        padding: 10%;
+        font-size: 4vw;
+    }
+
+    .itemPopupClass,
+    .itemPopupPrice {
+        font-size: 2.7vw;
+        margin-right: 26%;
+    }
+    .itemPopupClose {
+        top:0.5%;
+        right:1%;
+    }
+}
+
+@media only screen and (max-width: 490px) {
+    .logoImageContainer {
+        display: none;
+    }
+
+    .headerLinks {
+        justify-content: center;
+        padding: 0;
+    }
+
+    .headerLogout,
+    .headerUsername {
+        font-size: 20px;
+    }
+
+    .filterGroup {
+        display: grid;
+        grid-template-columns: auto auto;
+    }
+
+    .filterCheckBox {
+        width: 50%;
+    }
+
+    .links {
+        width: 30%;
+        font-size: 20px;
+    }
+
+    .itemPopupName {
+        padding: 10%;
+        font-size: 6vw;
+    }
+
+    .itemPopupClass,
+    .itemPopupPrice {
+        font-size: 4vw;
+        margin-right: 14%;
+    }
+
+    .itemPopupDesc {
+        font-size: 3.5vw;
+    }
+
+    .itemPopupPreview {
+        width: 100%;
+        height: 100%;
+        margin-top: 0;
+    }
+
+    .itemPopupClose {
+        color: black;
+    }
+}
+
+@media only screen and (max-width: 390px) {
+    .headerUsername {
+        display: none;
+    }
+
+    .filterGroup {
+        display: grid;
+        grid-template-columns: auto;
+    }
+
+    .removeFilterButton {
+        float: right;
+        margin: 0 10px 10px 10px;
+    }
+
+    .itemPopupName {
+        padding: 10%;
+        font-size: 6vw;
+    }
+
+    .itemPopupClass,
+    .itemPopupPrice {
+        font-size: 5vw;
+        margin-right: 14%;
+    }
+
+    .itemPopupDesc {
+        font-size: 3.5vw;
+    }
 }

@@ -1,7 +1,6 @@
 import React, { useRef } from 'react';
 import Axios from 'axios';
 import Notifs from './Notifs'
-import cookie from 'js-cookie'
 
 export default function LoginPage() {
   const backendURL = 'http://localhost:5000'
