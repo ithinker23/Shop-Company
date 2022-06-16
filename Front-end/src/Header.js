@@ -26,11 +26,6 @@ export default function Header({ isAuth, username }) {
       <div className='logoImageContainer'><img className='logoImage' src={logo} alt="LOGO"></img></div>
 
       <div className='headerLinks' ref={headerLinksRef}>
-        <Link className='links' to="/">
-          <div className='linkTitle'>
-            Home
-          </div>
-        </Link>
         <Link className='links' to="/login">
           <div className='linkTitle'>
             Login
