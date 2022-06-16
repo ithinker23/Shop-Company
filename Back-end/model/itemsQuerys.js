@@ -13,29 +13,24 @@ function getItems(filters) {
     return new Promise((resolve, reject) => {
         var query = ""
 
-        if (filters.Classes.length > 0 || filters.Colours.length > 0) query = " WHERE ";
+        if (filters.Classes.length > 0 || filters.Colours.length > 0) query += " WHERE ";
 
         for (var i = 0; i < filters.Classes.length; i++) {
 
             if (i != 0) query += "OR ";
-
             query += "Class = " + "'" + filters.Classes[i] + "' ";
-        }
 
-        for (var i = 0; i < filters.Colours.length; i++) {
+            for (var x = 0; x < filters.Colours.length; x++) {
 
-            if (i != 0) {
+                if (x != 0) {
+                    query += "OR ";
+                } else if (filters.Classes.length > 0) query += " AND ";
 
-                query += "OR ";
-
-            } else {
-
-                if (filters.Classes.length > 0) query += " AND ";
+                query += "Colours = " + "'" + filters.Colours[x] + "' ";
             }
-
-            query += "Colours = " + "'" + filters.Colours[i] + "' ";
-
         }
+
+
 
         console.log("SELECT * FROM items" + query)
         DBConnection.query("SELECT * FROM items" + query, (err, res) => {

@@ -55,7 +55,7 @@ export default function Header({ isAuth, username }) {
         </div>
         <div className='cartImageContainer'>
           <img className='cartImage' src={cart} alt="CART"></img>
-        </div>
+-        </div>
       </div>
     </div>
 
