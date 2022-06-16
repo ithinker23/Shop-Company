@@ -22,10 +22,10 @@ export default function ProtectedRoute({ ...rest }) {
 
     }
     authenticateCookies()
-  }, [])
+  })
 
 
-  if (isAuth == undefined) {
+  if (isAuth === undefined) {
     return <div>LOADING</div>
   } else {
     return isAuth ? <Outlet context={isAuth} /> : <Navigate to="/" />;

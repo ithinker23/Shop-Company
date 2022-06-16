@@ -501,15 +501,15 @@ body {
     grid-template-areas: "image name"
         "desc desc";
     grid-template-columns: auto 600px;
-    grid-template-rows: 50% 50%;
+    grid-template-rows: 55% 45%;
     font-family: monospace;
     border: 2px solid black;
     overflow: hidden;
 }
 
 .itemPopupImage {
-    width: 100%;
-    height: 100%;
+    object-fit: fill;
+    margin: auto;
 }
 
 .itemPopupName {
@@ -517,11 +517,15 @@ body {
     text-align: center;
     font-size: 50px;
     padding-top: 25%;
+    border-bottom: 1px solid black;
 
 }
 
 .itemPopupImageContainer {
     grid-area: image;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+
 }
 
 .itemPopupDesc {
