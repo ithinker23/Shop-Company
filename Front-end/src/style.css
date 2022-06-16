@@ -307,6 +307,7 @@ body {
     gap: 50px;
     margin-top: 40px;
     padding: 0 50px 0 50px;
+    margin-bottom: 40px;
 }
 
 @media only screen and (max-width: 1200px) {
@@ -373,8 +374,9 @@ body {
     .filterCheckBox {
         width: 50% !important;
     }
-    .links{
-        width:30%;
+
+    .links {
+        width: 30%;
         font-size: 15px;
     }
 
@@ -455,6 +457,18 @@ body {
     background: linear-gradient(rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.165));
     margin-top: -20px;
 }
-.headerUsername{
-margin-left:50px;
+
+.headerUsername {
+    margin-left: 50px;
+    font-size: 25px;
+}
+
+.headerLogout {
+    user-select: none;
+    cursor: pointer;
+}
+
+.headerLogout {
+    margin-left: 50px;
+    font-size: 25px;
 }

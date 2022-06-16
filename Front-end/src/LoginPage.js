@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import Axios from 'axios';
 import Notifs from './Notifs'
+import cookie from 'js-cookie'
 
 export default function LoginPage() {
   const backendURL = 'http://localhost:5000'
@@ -20,7 +21,9 @@ export default function LoginPage() {
 
         notifsRef.current.showNotifs(response.data.title, response.data.msg)
 
-        window.location = "/"
+        cookie.set("LoggedIn", true);
+
+        window.location = "/user/" + usernameRef.current.value;
       } catch (err) {
         notifsRef.current.showNotifs(err.response.data.title, err.response.data.msg)
       }

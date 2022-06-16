@@ -1,12 +1,14 @@
 import React, { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
-export default function Header({ loggedIn, username }) {
+import logo from "./logo.png"
+import cookie from 'js-cookie'
+export default function Header({ isAuth, username }) {
 
   const headerLinksRef = useRef();
   const headerUsernameRef = useRef();
 
   useEffect(() => {
-    if (loggedIn) {
+    if (isAuth) {
       headerLinksRef.current.style.display = "none"
       headerUsernameRef.current.style.display = "flex"
     } else {
@@ -14,11 +16,11 @@ export default function Header({ loggedIn, username }) {
       headerUsernameRef.current.style.display = "none"
     }
 
-  }, [loggedIn])
+  }, [isAuth])
 
   return (<>
     <div className="header">
-      <div className='logoImageContainer'><img className='logoImage' src="logo.png" alt="LOGO"></img></div>
+      <div className='logoImageContainer'><img className='logoImage' src={logo} alt="LOGO"></img></div>
 
       <div className='headerLinks' ref={headerLinksRef}>
         <Link className='links' to="/">
@@ -44,6 +46,12 @@ export default function Header({ loggedIn, username }) {
         </div>
         <div className='headerUsername'>
           CART 
+        </div>
+        <div className='headerLogout' onClick={() => {
+          cookie.set("LoggedIn", false);
+          window.location = "/";
+        }}>
+          Log Out
         </div>
       </div>
     </div>

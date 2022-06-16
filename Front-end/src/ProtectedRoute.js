@@ -1,21 +1,10 @@
-import React from 'react'
-import {Route, Redirect} from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { Route, Navigate, Outlet } from 'react-router-dom'
+import cookie from 'js-cookie'
 
+export default function ProtectedRoute({ ...rest }) {
 
-export default function ProtectedRoute({isAuth: isAuth, component: Component, ...rest}) {
-  return (
-    <>
-    
-    <Route {...rest} render={(props) => {
-       
-       if(isAuth) {
-        return <Component />;
+   const isAuth = cookie.get("LoggedIn") === "true";
 
-       }else {
-        return <Redirect to={{ pathname: "/", state: {from: props.location}}} />
-       }
-       
-     }} ></Route>
-    </>
-  )
+  return isAuth ? <Outlet context={isAuth} /> : <Navigate to="/" />;
 }
