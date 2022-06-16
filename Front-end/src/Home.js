@@ -31,6 +31,7 @@ export default function Home() {
 
   useEffect(() => {
     getItems(allFilters);
+    console.log(items)
   }, [allFilters])
 
 

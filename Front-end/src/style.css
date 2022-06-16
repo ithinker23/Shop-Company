@@ -79,6 +79,7 @@
     height: 100%;
     background-color: rgb(236, 236, 236);
     user-select: none;
+    object-fit: fill;
 }
 
 .itemImage {
@@ -471,41 +472,88 @@ body {
 }
 
 
-.cartImage{
-    width:40%;
-    height:40%;
+.cartImage {
+    width: 40%;
+    height: 40%;
 }
-.cartImageContainer{
-    width:100px;
+
+.cartImageContainer {
+    width: 100px;
 }
-.itemPopupPreviewContainer{
+
+.itemPopupPreviewContainer {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     z-index: 10;
-    background-color: rgba(0,0,0,0.3);
+    background-color: rgba(0, 0, 0, 0.3);
+    display: none;
 }
-.itemPopupPreview{
-    margin:6% auto auto auto;
-    width:60%;
+
+.itemPopupPreview {
+    margin: 6% auto auto auto;
+    width: 60%;
     height: 75%;
     background-color: rgb(235, 234, 234);
     display: grid;
     grid-template-areas: "image name"
-    "desc desc";
-    grid-template-columns:auto auto;
+        "desc desc";
+    grid-template-columns: auto 600px;
+    grid-template-rows: 50% 50%;
+    font-family: monospace;
+    border: 2px solid black;
+    overflow: hidden;
+}
+
+.itemPopupImage {
+    width: 100%;
+    height: 100%;
+}
+
+.itemPopupName {
+    grid-area: name;
+    text-align: center;
+    font-size: 50px;
+    padding-top: 25%;
+
+}
+
+.itemPopupImageContainer {
+    grid-area: image;
+}
+
+.itemPopupDesc {
+    grid-area: desc;
+    font-size: 20px;
+    padding:50px;
+}
+
+.itemPopupClass {
+    text-align: right;
+    margin-right: 95px;
+    font-size: 20px;
+    text-decoration: underline;
+    color: grey;
+}
+
+.itemPreviewClose {
+    position: fixed;
+    top: 12%;
+    right: 20.5%;
+    font-size: 25px;
+    user-select: none;
+    cursor: pointer;
+}
+
+.itemPopupPrice {
+    font-size:35px;
+    text-align: right;
+    margin-right: 95px;
 }
 .itemPopupImage{
-    grid-area: image ;
-    object-fit: fill;
-}
-.itemPopupName{
-    grid-area: name ;
-}
-.itemPopupImageContainer{
-}
-.itemPopupDesc{
-grid-area: desc;
+        max-width: 100%;
+        max-height: 100%;
+        display: block;
 }
