@@ -9,10 +9,9 @@ export default function Notif({ notif }, { key }) {
         }, 2500)
     })
 
-
     return (
         <div id={key} className="notifMoveAnim">
-            <div className="notification">
+            <div className="notification"  style={{backgroundColor:notif.color}}>
                 <div className='notificationTitle'>{notif.title}: </div>
                 <div className='notificationDesc'>{notif.text} </div>
                 </div>

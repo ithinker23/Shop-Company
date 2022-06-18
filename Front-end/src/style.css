@@ -3,7 +3,6 @@
     padding: 10px 10px 20px 10px;
     margin: 5px 10px;
     border-radius: 10px;
-    background-color: #dc3055;
     animation: notifAnim 2.5s;
     opacity: 0%;
     width: 300px;
@@ -11,6 +10,7 @@
     overflow: hidden;
     color: #fff5fa;
     font-family: 'Arial';
+    background-color: white;
 }
 
 .notifContainer {
@@ -405,7 +405,7 @@ body {
     width: 100%;
     height: 100%;
     z-index: 10;
-    background-color: rgba(0, 0, 0, 0.649);
+    background-color: rgba(0, 0, 0, 0.871);
     display: none;
 }
 
@@ -539,6 +539,11 @@ body {
     margin: 5px auto auto auto;
     width: 200px;
     animation: formCoverUnderlineAnim 3s;
+}
+
+.formRedirectLink{
+    margin-top:25px;
+    font-size: 20px;
 }
 
 @keyframes formCoverUnderlineAnim {

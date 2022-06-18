@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import Axios from 'axios';
 import Notifs from './Notifs'
-
+import {Link} from 'react-router-dom'
 export default function RegisterPage() {
 
   var newUserNameRef = useRef()
@@ -19,15 +19,18 @@ export default function RegisterPage() {
       const formData = { Username: newUserNameRef.current.value, Email: newEmailRef.current.value, Password: newPasswordRef.current.value, FirstName: newFirstNameRef.current.value }
       try {
         var response = await Axios.post(backendURL + '/validify/register', formData)
-        notifsRef.current.showNotifs(response.data.title, response.data.msg)
-        window.location = "/login"
+        notifsRef.current.showNotifs(response.data.title, response.data.msg,response.data.color)
+        setTimeout(()=>{
+          window.location = "/login"
+        },1000)
+       
       } catch (err) {
-        notifsRef.current.showNotifs(err.response.data.title, err.response.data.msg)
+        notifsRef.current.showNotifs(err.response.data.title, err.response.data.msg,response.data.color)
 
       }
 
     } else {
-      notifsRef.current.showNotifs("Registration Failed", "Input field(s) are empty")
+      notifsRef.current.showNotifs("Registration Failed", "Input field(s) are empty","#ff4c4c")
     }
   }
 
@@ -62,7 +65,11 @@ export default function RegisterPage() {
               <div className="slide"></div>
               <div className='buttonText'>Register</div>
             </div>
+            <div className='formRedirectLink'>
+              Already have an account? click <Link to="/login">HERE</Link>
+            </div>
           </div>
+
         </div>
         <div className="formCover">
           <div className="formCoverText">

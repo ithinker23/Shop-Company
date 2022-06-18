@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import Axios from 'axios';
 import Notifs from './Notifs'
+import {Link} from 'react-router-dom'
 
 export default function LoginPage() {
   const backendURL = 'http://localhost:5000'
@@ -18,16 +19,18 @@ export default function LoginPage() {
       try {
         var response = await Axios.post(backendURL + '/validify/login', formData, { withCredentials: true })
         console.log(response.headers)
-        notifsRef.current.showNotifs(response.data.title, response.data.msg)
+        notifsRef.current.showNotifs(response.data.title, response.data.msg , response.data.color)
 
+        setTimeout(()=>{
+          window.location = "/user/" + usernameRef.current.value;
+        },1000)
 
-        window.location = "/user/" + usernameRef.current.value;
       } catch (err) {
-        notifsRef.current.showNotifs(err.response.data.title, err.response.data.msg)
+        notifsRef.current.showNotifs(err.response.data.title, err.response.data.msg, err.response.data.color)
       }
 
     } else {
-      notifsRef.current.showNotifs("Login Failed", "Input field(s) are empty")
+      notifsRef.current.showNotifs("Login Failed", "Input field(s) are empty", "#ff4c4c")
     }
   }
   return (
@@ -50,6 +53,9 @@ export default function LoginPage() {
             <div className='button' onClick={checkLoginHandler}>
               <div className="slide"></div>
               <div className='buttonText'>Login</div>
+            </div>
+            <div className='formRedirectLink'>
+              Don't have an account? click <Link to="/register">HERE</Link>
             </div>
           </div>
         </div>
