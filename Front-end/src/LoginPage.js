@@ -32,20 +32,35 @@ export default function LoginPage() {
   }
   return (
     <>
-      <div className='textField'>
-        <input className="textInput" ref={usernameRef} type="text" />
-        <span className="bar"></span>
-        <label> Username </label>
+
+      <div className='formContainer'>
+        <div className='form'>
+          <div className="formInputFields">
+            <div className="formInputHeader">LOGIN</div>
+            <div className='textField'>
+              <input className="textInput" ref={usernameRef} type="text" />
+              <span className="bar"></span>
+              <label> Username </label>
+            </div>
+            <div className='textField'>
+              <input className="textInput" ref={passwordRef} type="password" />
+              <span className="bar"></span>
+              <label> Password </label>
+            </div>
+            <div className='button' onClick={checkLoginHandler}>
+              <div className="slide"></div>
+              <div className='buttonText'>Login</div>
+            </div>
+          </div>
+        </div>
+        <div className="formCover">
+          <div className="formCoverText">
+            SHOP APP
+          </div>
+          <div className="formCoverUnderline"></div>
+        </div>
       </div>
-      <div className='textField'>
-        <input className="textInput" ref={passwordRef} type="password" />
-        <span className="bar"></span>
-        <label> Password </label>
-      </div>
-      <div className='button' onClick={checkLoginHandler}>
-        <div className="slide"></div>
-        <div className='buttonText'>Login</div>
-      </div>
+
       <Notifs ref={notifsRef} />
     </>
   )

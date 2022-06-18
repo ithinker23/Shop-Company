@@ -24,7 +24,6 @@ export default forwardRef(function Notifs(props, ref) {
 
   return (
     <div className='notifContainer'>
-      <div className='gradient'></div>
       {
         notifs.map(notif => {
           return (

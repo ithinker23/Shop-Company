@@ -33,31 +33,45 @@ export default function RegisterPage() {
 
   return (
     <>
-      <div className='textField'>
-        <input class="textInput" ref={newUserNameRef} type="text" />
-        <span className="bar"></span>
-        <label> Username </label>
-      </div>
-      <div className='textField'>
-        <input class="textInput" ref={newFirstNameRef} type="text" />
-        <span className="bar"></span>
-        <label> First Name </label>
-      </div>
-      <div className='textField'>
-        <input class="textInput" ref={newEmailRef} type="email" />
-        <span className="bar"></span>
-        <label> Email </label>
-      </div>
-      <div className='textField'>
-        <input class="textInput" ref={newPasswordRef} type="password" />
-        <span className="bar"></span>
-        <label> Password </label>
-      </div>
+      <div className='formContainer'>
+        <div className='form'>
+          <div className="formInputFields">
+            <div className="formInputHeader">REGISTER</div>
+            <div className='textField'>
+              <input class="textInput" ref={newUserNameRef} type="text" />
+              <span className="bar"></span>
+              <label> Username </label>
+            </div>
+            <div className='textField'>
+              <input class="textInput" ref={newFirstNameRef} type="text" />
+              <span className="bar"></span>
+              <label> First Name </label>
+            </div>
+            <div className='textField'>
+              <input class="textInput" ref={newEmailRef} type="email" />
+              <span className="bar"></span>
+              <label> Email </label>
+            </div>
+            <div className='textField'>
+              <input class="textInput" ref={newPasswordRef} type="password" />
+              <span className="bar"></span>
+              <label> Password </label>
+            </div>
 
-      <div className='button' onClick={checkRegisterHandler}>
-        <div className="slide"></div>
-        <div className='buttonText'>Register</div>
+            <div className='button' onClick={checkRegisterHandler}>
+              <div className="slide"></div>
+              <div className='buttonText'>Register</div>
+            </div>
+          </div>
+        </div>
+        <div className="formCover">
+          <div className="formCoverText">
+            SHOP APP
+          </div>
+          <div className="formCoverUnderline"></div>
+        </div>
       </div>
+    
       <Notifs ref={notifsRef} />
     </>
   )
