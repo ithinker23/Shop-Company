@@ -13,10 +13,10 @@ root.render(
   <>
     <Router>
       <Routes>
-      <Route path="/user/:username" element={<ProtectedRoute />} >
+      <Route path="/user/:username" element={<ProtectedRoute/>} >
         <Route path="/user/:username" element={<Home/>}></Route>
       </Route>
-        <Route path='/' element={<Home/>}></Route>
+        <Route path='/home' element={<Home/>}></Route>
         <Route path='/login' element={<Login />}></Route>
         <Route path='/register' element={<Register />}></Route>
       </Routes>
