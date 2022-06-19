@@ -12,10 +12,14 @@ export default function ProtectedRoute({ ...rest }) {
     async function authenticateCookies() {
       var response = await Axios.post(backendURL + "/cookieAuth/", { Username: searchParams.username }, { withCredentials: true })
       if (response.data.error) {
+
         window.location = "/";
       } else {
+
         setIsAuth(response.data.isCorrectHash);
       }
+
+
     }
     authenticateCookies()
   })
