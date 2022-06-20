@@ -20,7 +20,7 @@ function getItems(filters) {
                 query += " OR "
             }
             
-            query +=  "( Class = " + "'" +filters.Classes[i] + "'"
+            query +=  "( Class = " + "'" + filters.Classes[i] + "'"
 
             for(var x = 0; x < filters.Colours.length; x++){
                 if(x == 0){
@@ -29,8 +29,12 @@ function getItems(filters) {
                     query += " OR "
                 }
                 query += "Colours = " + "'" + filters.Colours[x] + "'"
+
+                if(x + 1 == filters.Colours.length){
+                    query += ')'
+                }
             }
-            query += '))'
+            query += ')'
                
         }
 

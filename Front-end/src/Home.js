@@ -2,35 +2,37 @@ import AllItems from './AllItems'
 import Filter from './Filter'
 import { useState, useEffect } from 'react'
 import Axios from 'axios'
-import { useParams, useOutletContext } from "react-router-dom";
 import Header from './Header'
 
 export default function Home() {
 
   const backendURL = 'http://localhost:5000';
 
-  const searchParams = useParams();
-  var isAuth = useOutletContext();
-
   const [items, setItems] = useState([]);
   const [allFilters, setAllFilters] = useState({ Classes: [], Colours: [] });
+  const [userCookie, setUserCookie] = useState()
 
   async function getItems(obj) {
-    var Items = await Axios.post(backendURL + "/inventory/getItems", obj);
-    console.log(Items.data.items)
-    setItems(Items.data.items)
+    const response = await Axios.post(backendURL + "/inventory/getItems", obj);
+    setItems(response.data.items)
   }
 
-  async function getUserDetails() {
-    return null;
+  async function authCookie() {
+    try {
+      const response = await Axios.get(backendURL + "/cookieAuth/checkUserCookie", {withCredentials:true})
+      setUserCookie(response.data)
+    }
+    catch (err) {
+      setUserCookie(err.response.data)
+    }
   }
 
   useEffect(() => {
-    getUserDetails();
-  })
+    authCookie()
+  },[])
 
   useEffect(() => {
-    getItems(allFilters);
+    getItems(allFilters); 
   }, [allFilters])
 
 
@@ -40,7 +42,7 @@ export default function Home() {
 
   return (
     <>
-      <Header isAuth={isAuth} username={searchParams.username} />
+      <Header userInfo={userCookie}/>
       <div className='homePage'>
         <Filter handleSettingFilters={handleSettingFilters} />
         <AllItems items={items} />

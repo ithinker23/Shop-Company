@@ -21,7 +21,6 @@ app.use('/inventory', itemsRouter);
 const cookieRouter = require('./routes/cookieRouter')
 app.use('/cookieAuth', cookieRouter);
 
-
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })

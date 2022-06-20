@@ -5,56 +5,60 @@ import cookie from 'js-cookie'
 import cart from './cart.png'
 
 
-export default function Header({ isAuth, username }) {
+export default function Header({ userInfo }) {
 
   const headerLinksRef = useRef();
   const headerUsernameRef = useRef();
+  const headerUsernameDisplayRef = useRef();
 
   useEffect(() => {
-    if (isAuth) {
-      headerLinksRef.current.style.display = "none"
-      headerUsernameRef.current.style.display = "flex"
-    } else {
-      headerLinksRef.current.style.display = "flex"
-      headerUsernameRef.current.style.display = "none"
+    if(userInfo != undefined){
+      if (userInfo.Name != "") {
+        headerLinksRef.current.style.display = "none"
+        headerUsernameRef.current.style.display = "flex"
+        headerUsernameDisplayRef.current.innerHTML ="Welcome, " + userInfo.Name;
+      } else {
+        headerLinksRef.current.style.display = "flex"
+        headerUsernameRef.current.style.display = "none"
+      }
     }
+  }, [userInfo])
 
-  }, [isAuth])
+  return (
+    <>
+      <div className="header">
+        <div className='logoImageContainer'><img className='logoImage' src={logo} alt="LOGO"></img></div>
 
-  return (<>
-    <div className="header">
-      <div className='logoImageContainer'><img className='logoImage' src={logo} alt="LOGO"></img></div>
+        <div className='headerLinks' ref={headerLinksRef}>
+          <Link className='links' to="/login">
+            <div className='linkTitle'>
+              Login
+            </div>
+          </Link>
+          <Link className='links' to="/Register">
+            <div className='linkTitle'>
+              Register
+            </div>
+          </Link>
+        </div>
 
-      <div className='headerLinks' ref={headerLinksRef}>
-        <Link className='links' to="/login">
-          <div className='linkTitle'>
-            Login
+        <div className='headerLinks' ref={headerUsernameRef}>
+          <div className='headerUsername' ref={headerUsernameDisplayRef}>
+
           </div>
-        </Link>
-        <Link className='links' to="/Register">
-          <div className='linkTitle'>
-            Register
+          <div className='headerLogout' onClick={() => {
+            cookie.remove("Username");
+            window.location = "/";
+          }}>
+            Log Out
           </div>
-        </Link>
+          <div className='cartImageContainer'>
+            <img className='cartImage' src={cart} alt="CART"></img>
+          </div>
+        </div>
       </div>
 
-      <div className='headerLinks' ref={headerUsernameRef}>
-        <div className='headerUsername'>
-          Welcome, {username}
-        </div>
-        <div className='headerLogout' onClick={() => {
-          cookie.remove("LoggedInAs");
-          window.location = "/";
-        }}>
-          Log Out
-        </div>
-        <div className='cartImageContainer'>
-          <img className='cartImage' src={cart} alt="CART"></img>
-        </div>
-      </div>
-    </div>
-
-    <div className='headerShadow'></div>
-  </>
+      <div className='headerShadow'></div>
+    </>
   )
 }

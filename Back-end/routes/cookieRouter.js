@@ -3,6 +3,6 @@ const router = express.Router();
 
 const controller = require('../controllers/cookieController');
 
+router.route('/checkUserCookie').get(controller.checkUserCookie);
 
-router.route('/').post(controller.cookieAuth)
 module.exports = router;

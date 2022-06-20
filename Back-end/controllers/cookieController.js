@@ -1,23 +1,17 @@
-
-const bcrypt = require('bcrypt')
+const DB = require('../model/accountQuerys')
 
 module.exports = {
 
-    cookieAuth: async (req, res) => {
-
-
-        if (req.cookies.LoggedInAs != null) {
+    checkUserCookie: async (req, res) => {
+        if (req.cookies.Username) {
             try {
-                var result = await bcrypt.compare(req.body.Username, req.cookies.LoggedInAs)
-                res.send({ isCorrectHash: result })
+                const userInfo = await DB.findAccount("Username", req.cookies.Username, "Name")
+                res.status(200).json(userInfo)
             } catch (err) {
-                throw err
+                res.status(400)
             }
         } else {
-            res.send({error:"Not Logged In"})
+            res.status(200).json({Name: ""})
         }
-
     }
-
-
 }

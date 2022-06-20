@@ -22,8 +22,8 @@ export default function LoginPage() {
         notifsRef.current.showNotifs(response.data.title, response.data.msg , response.data.color)
 
         setTimeout(()=>{
-          window.location = "/user/" + usernameRef.current.value;
-        },1000)
+          window.location = "/";
+        }, 1000)
 
       } catch (err) {
         notifsRef.current.showNotifs(err.response.data.title, err.response.data.msg, err.response.data.color)

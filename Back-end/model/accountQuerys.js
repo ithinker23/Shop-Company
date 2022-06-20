@@ -53,9 +53,9 @@ function createAccountDB(account) {
   showDB();
 }
 
-function findAccount(col, pred) {
+function findAccount(col, pred,value) {
   return new Promise((resolve, reject) => {
-    DBConnection.query("SELECT * FROM accounts WHERE " + col + " = '" + pred + "'", (err, res) => {
+    DBConnection.query("SELECT " + value  + " FROM accounts WHERE " + col + " = '" + pred + "'", (err, res) => {
       if (err) {
         reject(err)
       } else {
