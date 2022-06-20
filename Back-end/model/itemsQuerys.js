@@ -1,13 +1,6 @@
 const { query } = require('../model/DBConnection');
 const DBConnection = require('../model/DBConnection');
 
-function showDB() {
-    DBConnection.query("SELECT * FROM items", (err, results) => {
-        if (err) throw err
-        console.log(results)
-    })
-}
-
 //{Classes: ["Shirt", "Pants"], Colours: ["Brown","Black"]}
 function getItems(filters) {
     return new Promise((resolve, reject) => {
@@ -37,8 +30,6 @@ function getItems(filters) {
             query += ')'
                
         }
-
-        console.log("SELECT * FROM items" + query)
         DBConnection.query("SELECT * FROM items" + query, (err, res) => {
             if (err) reject(err)
             resolve(res)

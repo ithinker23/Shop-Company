@@ -21,6 +21,7 @@ export default function Home() {
     try {
       const response = await Axios.get(backendURL + "/cookieAuth/checkUserCookie", {withCredentials:true})
       setUserCookie(response.data)
+      console.log(userCookie)
     }
     catch (err) {
       setUserCookie(err.response.data)
@@ -34,7 +35,6 @@ export default function Home() {
   useEffect(() => {
     getItems(allFilters); 
   }, [allFilters])
-
 
   function handleSettingFilters(filters) {
     setAllFilters(filters);

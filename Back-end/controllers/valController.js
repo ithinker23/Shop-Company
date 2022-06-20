@@ -1,4 +1,6 @@
 const DB = require('../model/accountQuerys')
+const crypto = require("../controllers/crypto")
+
 
 module.exports = {
 
@@ -6,7 +8,13 @@ module.exports = {
         var acc = await DB.findAccount("Username", req.body.Username, "Password")
         if (acc) {
             if (acc.Password == req.body.Password) {
-                res.status(200).cookie('Username', req.body.Username).json({ title: 'Login Complete', msg: 'Logging in', color: "#3EB489" })
+                try {
+                    var encryptedData = await crypto.encrypt(req.body.Username)
+                    res.status(200).cookie('Username', (encryptedData)).json({ title: 'Login Complete', msg: 'Logging in', color: "#3EB489" })
+                } catch (err) {
+                    console.log(err)
+                }
+
             } else {
                 res.status(400).json({ title: 'Login Failed', msg: 'Invalid password', color: "#ff4c4c" })
             }
@@ -33,5 +41,6 @@ module.exports = {
             res.status(400).json({ title: 'Registration Failed', msg: 'Username is in use', color: "#ff4c4c" });
         }
     }
+
 }
 

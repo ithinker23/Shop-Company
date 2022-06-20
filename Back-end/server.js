@@ -4,7 +4,6 @@ const port = 5000
 const bodyParser = require('body-parser')
 const cors = require('cors');
 const cookieParser = require('cookie-parser')
-const bcrypt = require('bcrypt')
 
 app.use(cors({origin: 'http://localhost:3000', credentials: true}));
 
