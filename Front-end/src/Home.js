@@ -32,24 +32,23 @@ export default function Home() {
   },[])
 
   useEffect(() => {
-    getItems(allFilters);
     console.log(allFilters)
+    getItems(allFilters);
   }, [allFilters])
 
   function handleSettingFilters(filters) {
-    setAllFilters(prevFilters => {
-      prevFilters.Class = filters.Class
-      prevFilters.Colours = filters.Colours
-      prevFilters.Price = filters.Price
-      return prevFilters;
-    });
+
+    let copyOfFIlters = {Class: allFilters.Class, Price: allFilters.Price, Colours: allFilters.Colours, Search:allFilters.Search };
+    copyOfFIlters.Class = filters.Class
+    copyOfFIlters.Colours = filters.Colours
+    copyOfFIlters.Price = filters.Price
+    setAllFilters(copyOfFIlters);
   }
 
   function handleSettingSearch(search){
-    setAllFilters(prevFilters => {
-      prevFilters.Search = search 
-      return prevFilters
-    })
+    let copyOfFIlters = {Class: allFilters.Class, Price: allFilters.Price, Colours: allFilters.Colours, Search:allFilters.Search };
+    copyOfFIlters.Search = search
+    setAllFilters(copyOfFIlters)
   }
 
   return (

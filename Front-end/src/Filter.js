@@ -44,7 +44,7 @@ export default function Filter({ handleSettingFilters }) {
     orangeInputRef.current.checked = false
     brownInputRef.current.checked = false
 
-    handleSettingFilters({ Classes: [], Colours: [] })
+    handleSettingFilters({ Class: "", Price: "", Colours: [] })
 
   }
   return (
