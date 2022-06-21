@@ -9,7 +9,7 @@ export default function Home() {
   const backendURL = 'http://localhost:5000';
 
   const [items, setItems] = useState([]);
-  const [allFilters, setAllFilters] = useState({Class:"", Price: "", Colours: [] });
+  const [allFilters, setAllFilters] = useState({Class:"", Price: "", Colours: [], Search:"" });
   const [userCookie, setUserCookie] = useState()
 
   async function getItems(obj) {
@@ -21,7 +21,6 @@ export default function Home() {
     try {
       const response = await Axios.get(backendURL + "/cookieAuth/checkUserCookie", {withCredentials:true})
       setUserCookie(response.data)
-      console.log(userCookie)
     }
     catch (err) {
       setUserCookie(err.response.data)
@@ -33,16 +32,29 @@ export default function Home() {
   },[])
 
   useEffect(() => {
-    getItems(allFilters); 
+    getItems(allFilters);
+    console.log(allFilters)
   }, [allFilters])
 
   function handleSettingFilters(filters) {
-    setAllFilters(filters);
+    setAllFilters(prevFilters => {
+      prevFilters.Class = filters.Class
+      prevFilters.Colours = filters.Colours
+      prevFilters.Price = filters.Price
+      return prevFilters;
+    });
+  }
+
+  function handleSettingSearch(search){
+    setAllFilters(prevFilters => {
+      prevFilters.Search = search 
+      return prevFilters
+    })
   }
 
   return (
     <>
-      <Header userInfo={userCookie}/>
+      <Header userInfo={userCookie} handleSettingSearch={handleSettingSearch}/>
       <div className='homePage'>
         <Filter handleSettingFilters={handleSettingFilters} />
         <AllItems items={items} />

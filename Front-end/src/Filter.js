@@ -62,8 +62,6 @@ export default function Filter({ handleSettingFilters }) {
               <option value="Shoes">Shoes</option>
             </select>
           </div>
-
-
         </div>
         <div className='filterGroupHeader'>Price</div>
         <div className='filterGroup'>
