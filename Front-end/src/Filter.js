@@ -2,11 +2,14 @@ import React, { useRef } from 'react'
 
 export default function Filter({ handleSettingFilters }) {
 
-  //Classes Refs
-  const shirtsInputRef = useRef();
-  const walletInputRef = useRef();
-  const pantsInputRef = useRef();
-  const shoesInputRef = useRef();
+  //Class Refs
+  const classInputRef = useRef();
+
+  //Prices Refs
+  const price200InputRef = useRef();
+  const price150InputRef = useRef();
+  const price100InputRef = useRef();
+  const price50InputRef = useRef();
 
   //Colours Refs  
   const blackInputRef = useRef();
@@ -15,12 +18,14 @@ export default function Filter({ handleSettingFilters }) {
 
   function formatFilters() {
     // = format all filters into an array useable by handleSettingFilters() eg {Classes: ["Shirt", "Pants"], Colours: ["Brown","Black"]}
-    var filters = { Classes: [], Colours: [] }
+    var filters = { Class: "", Price: "", Colours: [] }
 
-    if (shirtsInputRef.current.checked) filters.Classes.push("Shirts")
-    if (walletInputRef.current.checked) filters.Classes.push("Wallet")
-    if (pantsInputRef.current.checked) filters.Classes.push("Pants")
-    if (shoesInputRef.current.checked) filters.Classes.push("Shoes")
+    filters.Class = classInputRef.current.value;
+
+    if (price200InputRef.current.checked) { filters.Price = "< 200" }
+    else if (price150InputRef.current.checked) { filters.Price = "> 150" }
+    else if (price100InputRef.current.checked) { filters.Price = "> 100" }
+    else if (price50InputRef.current.checked) { filters.Price = "> 200" }
 
     if (blackInputRef.current.checked) filters.Colours.push("Black")
     if (orangeInputRef.current.checked) filters.Colours.push("Orange")
@@ -31,10 +36,10 @@ export default function Filter({ handleSettingFilters }) {
 
   function removeFilters() {
 
-    shirtsInputRef.current.checked = false
-    walletInputRef.current.checked = false
-    pantsInputRef.current.checked = false
-    shoesInputRef.current.checked = false
+    price200InputRef.current.checked = false
+    price150InputRef.current.checked = false
+    price100InputRef.current.checked = false
+    price50InputRef.current.checked = false
     blackInputRef.current.checked = false
     orangeInputRef.current.checked = false
     brownInputRef.current.checked = false
@@ -45,44 +50,59 @@ export default function Filter({ handleSettingFilters }) {
   return (
     <>
       <div className="filterContainer">
-
-        <div className='filterGroupHeader'>CLASSES</div>
+        <div className='filterGroupHeader'>Class</div>
         <div className='filterGroup'>
-          <div className='filterCheckBox'>
-
-            <input type='checkbox' ref={shirtsInputRef} />
-            <div className='inputCheckboxLabel'>Shirt</div>
+          <div className="dropdownInputContainer">
+            
+            <select name="classSelector" className='dropdownInput' ref={classInputRef}>
+              <option value="*">All Classes</option>
+              <option value="Shirts">Shirts</option>
+              <option value="Pants">Pants</option>
+              <option value="Wallets">Wallets</option>
+              <option value="Shoes">Shoes</option>
+            </select>
           </div>
-          <div className='filterCheckBox'>
 
-            <input type='checkbox' ref={walletInputRef} />
-            <div className='inputCheckboxLabel'>Wallet</div>
+
+        </div>
+        <div className='filterGroupHeader'>Price</div>
+        <div className='filterGroup'>
+
+          <div className='filterInput'>
+
+            <input type='radio' name="price" ref={price200InputRef} />
+            <div className='inputLabel'> 200 + </div>
           </div>
-          <div className='filterCheckBox'>
+          <div className='filterInput'>
 
-            <input type='checkbox' ref={pantsInputRef} />
-            <div className='inputCheckboxLabel'>Pants</div>
+            <input type='radio' name="price" ref={price150InputRef} />
+            <div className='inputLabel'> Below 150</div>
           </div>
-          <div className='filterCheckBox'>
+          <div className='filterInput'>
 
-            <input type='checkbox' ref={shoesInputRef} />
-            <div className='inputCheckboxLabel'>Shoes</div>
+            <input type='radio' name="price" ref={price100InputRef} />
+            <div className='inputLabel'>Below 100</div>
+          </div>
+          <div className='filterInput'>
+
+            <input type='radio' name="price" ref={price50InputRef} />
+            <div className='inputLabel'>Below 50</div>
           </div>
         </div>
 
         <div className='filterGroupHeader'>COLOURS</div>
         <div className='filterGroup'>
-          <div className='filterCheckBox'>
+          <div className='filterInput'>
             <input type='checkbox' ref={blackInputRef} />
-            <div className='inputCheckboxLabel'>Black</div>
+            <div className='inputLabel'>Black</div>
           </div>
-          <div className='filterCheckBox'>
+          <div className='filterInput'>
             <input type='checkbox' ref={orangeInputRef} />
-            <div className='inputCheckboxLabel'>Orange</div>
+            <div className='inputLabel'>Orange</div>
           </div>
-          <div className='filterCheckBox'>
+          <div className='filterInput'>
             <input type='checkbox' ref={brownInputRef} />
-            <div className='inputCheckboxLabel'>Brown</div>
+            <div className='inputLabel'>Brown</div>
           </div>
         </div>
 

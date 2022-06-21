@@ -217,13 +217,14 @@ label {
 .headerLinks {
     height: 80px;
     margin: 0 0 0 10px;
-    display: flex;
+    display: none;
     justify-content: right;
     text-align: center;
     align-items: center;
     vertical-align: middle;
     width: 100%;
     padding-right: 30px;
+    
 }
 
 body {
@@ -316,7 +317,7 @@ body {
     padding-top:80px;
 }
 
-.filterCheckBox {
+.filterInput {
     height: 50px;
     width: 100%;
     margin: auto;
@@ -365,7 +366,7 @@ body {
     margin-top: 10px;
 }
 
-.inputCheckboxLabel {
+.inputLabel {
     display: inline-block;
     margin-left: 10px;
 }
@@ -553,6 +554,18 @@ body {
     font-size: 20px;
 }
 
+.dropdownInputContainer{
+    margin-bottom:25px;
+    width:100%;
+}
+.dropdownInput{
+    width:80%;
+    margin:auto;
+    margin-left:10%;
+    font-size: 20px;
+    font-family:monospace ;
+}
+
 @keyframes formCoverUnderlineAnim {
     0% {
         width: 0px;
@@ -720,7 +733,7 @@ body {
     }
 }
 
-@media only screen and (max-width: 490px) {
+@media only screen and (max-width: 680px) {
     .logoImageContainer {
         display: none;
     }
@@ -740,7 +753,7 @@ body {
         grid-template-columns: auto auto;
     }
 
-    .filterCheckBox {
+    .filterInput {
         width: 50%;
     }
 
@@ -775,7 +788,7 @@ body {
     }
 }
 
-@media only screen and (max-width: 390px) {
+@media only screen and (max-width: 550px) {
     .headerUsername {
         display: none;
     }

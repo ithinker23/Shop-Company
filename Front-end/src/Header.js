@@ -57,7 +57,6 @@ export default function Header({ userInfo }) {
           </div>
         </div>
       </div>
-
       <div className='headerShadow'></div>
     </>
   )

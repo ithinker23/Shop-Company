@@ -9,7 +9,7 @@ export default function Home() {
   const backendURL = 'http://localhost:5000';
 
   const [items, setItems] = useState([]);
-  const [allFilters, setAllFilters] = useState({ Classes: [], Colours: [] });
+  const [allFilters, setAllFilters] = useState({Class:"", Price: "", Colours: [] });
   const [userCookie, setUserCookie] = useState()
 
   async function getItems(obj) {
