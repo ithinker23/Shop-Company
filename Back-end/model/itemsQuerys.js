@@ -1,10 +1,49 @@
-const { query } = require('../model/DBConnection');
 const DBConnection = require('../model/DBConnection');
 
-//{Classes: ["Shirt", "Pants"], Colours: ["Brown","Black"]}
+// filters will be in the form of { Class: '', Price: '', Colours: [], Search: '' } when empty
+// this function will have to consume an object named filters, in our case, and using SQL to retrieve items from the database
 function getItems(filters) {
+    var query = ""
+
+    if (filters.Class == "" && filters.Price == null && filters.Colours.length == 0 && filters.Search == "") {
+        query += "SELECT * FROM items"
+    } else {
+        query += "SELECT * FROM items WHERE "
+
+        if (filters.Class != "") {
+            query += "Class = " + "'" + filters.Class + "'"
+
+            if(filters.Price != "" || filters.Colours != []){
+                query += " AND "
+            }
+        }
+        
+        if (filters.Price != null) {
+            query += "Price ";
+
+            if(filters.Price >= 200) {query += ">= " + "'" + filters.Price + "'"}
+            else {query += "<= " + "'" + filters.Price + "'"}
+
+            if(filters.Colours.length != 0){
+                query += " AND "
+            }
+        }
+
+        if (filters.Colours.length != 0) {
+            for (let x = 0; x < filters.Colours.length; x++ ) {
+                if (x==0) {
+                    query += "Colours = " + "'" + filters.Colours[x] + "'"
+                } else {
+                    query += " OR Colours = " + "'" + filters.Colours[x] + "'"
+                }
+            }
+        }
+    }
+
+    console.log(query)
+
     return new Promise((resolve, reject) => {
-        DBConnection.query("SELECT * FROM items", (err, res) => {
+        DBConnection.query(query, (err, res) => {
             if (err) reject(err)
             resolve(res)
         })

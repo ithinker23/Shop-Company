@@ -18,14 +18,14 @@ export default function Filter({ handleSettingFilters }) {
 
   function formatFilters() {
     // = format all filters into an array useable by handleSettingFilters() eg {Classes: ["Shirt", "Pants"], Colours: ["Brown","Black"]}
-    var filters = { Class: "", Price: "", Colours: [] }
+    var filters = { Class: "", Price: null, Colours: [] }
 
     filters.Class = classInputRef.current.value;
 
-    if (price200InputRef.current.checked) { filters.Price = "< 200" }
-    else if (price150InputRef.current.checked) { filters.Price = "> 150" }
-    else if (price100InputRef.current.checked) { filters.Price = "> 100" }
-    else if (price50InputRef.current.checked) { filters.Price = "> 200" }
+    if (price200InputRef.current.checked) { filters.Price = 200 }
+    else if (price150InputRef.current.checked) { filters.Price = 150 }
+    else if (price100InputRef.current.checked) { filters.Price = 100 }
+    else if (price50InputRef.current.checked) { filters.Price = 200 }
 
     if (blackInputRef.current.checked) filters.Colours.push("Black")
     if (orangeInputRef.current.checked) filters.Colours.push("Orange")
@@ -44,7 +44,7 @@ export default function Filter({ handleSettingFilters }) {
     orangeInputRef.current.checked = false
     brownInputRef.current.checked = false
 
-    handleSettingFilters({ Class: "", Price: "", Colours: [] })
+    handleSettingFilters({ Class: "", Price: null, Colours: [] })
 
   }
   return (
@@ -55,7 +55,7 @@ export default function Filter({ handleSettingFilters }) {
           <div className="dropdownInputContainer">
             
             <select name="classSelector" className='dropdownInput' ref={classInputRef}>
-              <option value="*">All Classes</option>
+              <option value="">All Classes</option>
               <option value="Shirts">Shirts</option>
               <option value="Pants">Pants</option>
               <option value="Wallets">Wallets</option>
