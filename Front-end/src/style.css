@@ -94,7 +94,7 @@
 .textInput {
     margin-top: 50px;
     font-size: 18px;
-    padding: 10px 0px 10px 0px;
+    padding: 10px 0px 10px 5px;
     display: block;
     width: 100%;
     border: none;
@@ -164,9 +164,6 @@ label {
     }
 }
 
-
-
-
 .button {
     position: relative;
     overflow: hidden;
@@ -211,7 +208,19 @@ label {
 }
 
 .button:hover .buttonText {
-    color: #ffffff;
+    color: #f3f2f2;
+}
+.headerButton > .slide{
+    background-color: #f3f2f2;
+}
+
+.headerButton:hover .buttonText{
+    color:black;
+}
+.headerButton{
+    margin:0 3% 0 10%;
+    color:white;
+    border-color:#f3f2f2;
 }
 
 .headerLinks {
@@ -258,8 +267,11 @@ body {
     font-family: "Courier New";
     border-bottom: 1px solid black;
     height: 550px;
+    border:2px solid transparent;
 }
-
+.itemDiv:hover{
+    border:2px solid rgba(0, 0, 0, 0.205)
+}
 .itemDivDesc {
     height: 20%;
     border-bottom: 1px solid black;
@@ -336,11 +348,15 @@ body {
 .filterGroup {
     padding-top: 20px;
 }
-
+.headerInfo{
+    display: flex;
+    min-width:300px;
+    height: 100%;
+}
 .logoImageContainer {
-    height: 80px;
-    width: 150px;
-    margin: 0 0 0 10px;
+    height: 100%;
+    width: 75px;
+    margin: 0 75px 0 10px;
     text-align: center;
 
 }
@@ -359,6 +375,7 @@ body {
     width:100%;
     top:0;
     z-index:1;
+    height: 80px;
 }
 
 .filterButton {
@@ -370,14 +387,6 @@ body {
     display: inline-block;
     margin-left: 10px;
 }
-
-.headerShadow {
-    height: 20px;
-    width: 100%;
-    background: linear-gradient(rgba(0, 0, 0, 0.165), rgba(255, 255, 255, 0));
-    margin-bottom: -20px;
-}
-
 .footerShadow {
     height: 20px;
     width: 100%;
@@ -387,6 +396,8 @@ body {
 
 .headerUsername {
     font-size: 20px;
+    height:70%;
+    padding-top:9%;
 }
 
 .headerLogout {
@@ -404,6 +415,8 @@ body {
 
 .cartImageContainer {
     width: 100px;
+    cursor: pointer;
+    user-select: none;
 }
 
 .itemPopupPreviewContainer {
@@ -567,7 +580,7 @@ body {
 }
 .searchBarContainer{
     justify-content: center;
-    padding: 0 0 0 25%;
+    padding: 0 0 0 12%;
     width: 100%;
     display: flex;
 }
@@ -575,10 +588,12 @@ body {
     width: 100%;
     height: 25px;
     margin-top:25px;
+    padding:0 0 0 10px;
     background-color: #414141;
     border:none;
     color:#f3f2f2;
     font-size: 20px;
+    font-family: monospace;
 }
 .searchBar:focus-visible{
     outline: #252525 auto 0.1px;

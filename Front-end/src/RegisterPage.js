@@ -25,8 +25,9 @@ export default function RegisterPage() {
         },1000)
        
       } catch (err) {
-        notifsRef.current.showNotifs(err.response.data.title, err.response.data.msg,response.data.color)
 
+        console.log(err.response.data)
+        notifsRef.current.showNotifs(err.response.data.title, err.response.data.msg, response.data.color)
       }
 
     } else {
@@ -41,22 +42,22 @@ export default function RegisterPage() {
           <div className="formInputFields">
             <div className="formInputHeader">REGISTER</div>
             <div className='textField'>
-              <input class="textInput" ref={newUserNameRef} type="text" />
+              <input className="textInput" ref={newUserNameRef} type="text" />
               <span className="bar"></span>
               <label> Username </label>
             </div>
             <div className='textField'>
-              <input class="textInput" ref={newFirstNameRef} type="text" />
+              <input className="textInput" ref={newFirstNameRef} type="text" />
               <span className="bar"></span>
               <label> First Name </label>
             </div>
             <div className='textField'>
-              <input class="textInput" ref={newEmailRef} type="email" />
+              <input className="textInput" ref={newEmailRef} type="email" />
               <span className="bar"></span>
               <label> Email </label>
             </div>
             <div className='textField'>
-              <input class="textInput" ref={newPasswordRef} type="password" />
+              <input className="textInput" ref={newPasswordRef} type="password" />
               <span className="bar"></span>
               <label> Password </label>
             </div>

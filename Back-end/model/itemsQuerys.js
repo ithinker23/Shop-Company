@@ -13,7 +13,7 @@ function getItems(filters) {
         if (filters.Class != "") {
             query += "Class = " + "'" + filters.Class + "'"
 
-            if(filters.Price != "" || filters.Colours != []){
+            if(filters.Price != null || filters.Colours.length != 0){
                 query += " AND "
             }
         }
@@ -39,9 +39,7 @@ function getItems(filters) {
             }
         }
     }
-
-    console.log(query)
-
+    
     return new Promise((resolve, reject) => {
         DBConnection.query(query, (err, res) => {
             if (err) reject(err)

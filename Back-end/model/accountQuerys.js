@@ -49,7 +49,7 @@ function createAccountDB(account) {
       break;
   }
 
-  DBConnection.query("INSERT INTO accounts (Username, First_Name, Email, Password, Joined) VALUES ('" + account.Username + "', '" + account.FirstName + "', '" + account.Email + "', '" + account.Password + "', '"+ d[3] + "" + d[1] + "" + d[2] +"')");
+  DBConnection.query("INSERT INTO accounts (Username, Name, Email, Password, Joined) VALUES ('" + account.Username + "', '" + account.FirstName + "', '" + account.Email + "', '" + account.Password + "', '"+ d[3] + "" + d[1] + "" + d[2] +"')");
 }
 
 function findAccount(col, pred,value) {

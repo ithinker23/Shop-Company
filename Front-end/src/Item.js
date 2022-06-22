@@ -7,7 +7,9 @@ export default function Item({ item }) {
 
   return (
     <>
-      <div className='itemDiv' onClick={()=>{ itemPreviewRef.current.style.display = "block";}}>
+      <div className='itemDiv' onClick={()=>{ setTimeout(()=>{
+        itemPreviewRef.current.style.display = "block";
+      },200) }}>
         <div className='itemImagePreviewContainer'>
         <img className="itemImagePreview" src={item.Photo} alt='of product'></img>
         </div>

@@ -12,7 +12,6 @@ root.render(
   <>
     <Router>
       <Routes>
-        <Route path="/user/:username" element={<Home/>}></Route>
         <Route path='/' element={<Home/>}></Route>
         <Route path='/login' element={<Login />}></Route>
         <Route path='/register' element={<Register />}></Route>
