@@ -33,8 +33,8 @@ export default function Header({ userInfo, handleSettingSearch }) {
     <>
       <div className="header">
         <div className='headerInfo'>
-        <div className='logoImageContainer'><img className='logoImage' src={logo} alt="LOGO"></img></div>
-        <div className='headerUsername' ref={headerUsernameDisplayRef}></div>
+          <div className='logoImageContainer'><img className='logoImage' src={logo} alt="LOGO"></img></div>
+          <div className='headerUsername' ref={headerUsernameDisplayRef}></div>
         </div>
         <div className='searchBarContainer'>
           <input ref={headerSearchBarRef} className='searchBar' type="text"></input>
@@ -42,7 +42,7 @@ export default function Header({ userInfo, handleSettingSearch }) {
         </div>
 
         <div className='headerLinks' ref={headerLinksRef}>
-        <div className='headerButton button' onClick={() => {
+          <div className='headerButton button' onClick={() => {
             window.location = "/login";
           }}>
             <div className="slide"></div>
@@ -64,8 +64,12 @@ export default function Header({ userInfo, handleSettingSearch }) {
             <div className="slide"></div>
             <div className='buttonText'>LOGOUT</div>
           </div>
-          <div className='cartImageContainer'>
-            <img className='cartImage' src={cart} alt="CART"></img>
+          <div className='cartDiv' onClick={() => {
+            window.location = "/cart";
+          }}>
+            <div className='cartImageContainer'>
+              <img className='cartImage' src={cart} alt="CART"></img>
+            </div>
           </div>
         </div>
       </div>

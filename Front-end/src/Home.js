@@ -11,7 +11,6 @@ export default function Home() {
   const [allFilters, setAllFilters] = useState({ Class: "", Price: null, Colours: [], Search: "" });
   const [userCookie, setUserCookie] = useState()
 
-
 // Function that awaits for a response from a request given to the back-end, this request is to retrieve all items that meet the filters
 // try-catch is not needed as there will be no failing cases
   async function getItems(filters) {
@@ -45,7 +44,8 @@ export default function Home() {
 
 
 
-// creates a copy 
+// creates a copy filters because useEffect will only detect changes to filters' object as a whole.
+// by creating a copy it can also detect changes to the elements of the object
   function handleSettingFilters(filters) {
     var copyOfFIlters = { Class: allFilters.Class, Price: allFilters.Price, Colours: allFilters.Colours, Search: allFilters.Search };
     copyOfFIlters.Class = filters.Class
@@ -57,7 +57,9 @@ export default function Home() {
   function handleSettingSearch(search) {
     var copyOfFIlters = { Class: allFilters.Class, Price: allFilters.Price, Colours: allFilters.Colours, Search: allFilters.Search };
     copyOfFIlters.Search = search
+    console.log(search)
     setAllFilters(copyOfFIlters)
+    console.log(allFilters)
   }
 
   return (
