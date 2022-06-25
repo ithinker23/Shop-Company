@@ -43,7 +43,7 @@ function getItems(filters) {
         }
 
         if (filters.Search.length != 0) {
-            query += " Name LIKE " + "'" + filters.Search + "'"
+            query += "(Name LIKE " + "'%" + filters.Search + "%' OR Class LIKE " + "'%" + filters.Search + "%' OR Colours LIKE " + "'%" + filters.Search + "%')  "
         }
     }
 
