@@ -610,6 +610,22 @@ body {
     user-select: none;
     cursor: pointer;
 }
+
+.cartPreview{
+    width: 250px;
+    height:0px;
+    background-color: grey;
+    position:absolute;
+    z-index: 3;
+    top:75px;
+    right:0;
+    transition: all ease-in-out 0.25s;
+}
+
+.cartImageContainer:hover + .cartPreview{
+    height:400px;
+}
+
 @keyframes formCoverUnderlineAnim {
     0% {
         width: 0px;

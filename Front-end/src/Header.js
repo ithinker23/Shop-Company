@@ -70,6 +70,7 @@ export default function Header({ userInfo, handleSettingSearch }) {
             <div className='cartImageContainer'>
               <img className='cartImage' src={cart} alt="CART"></img>
             </div>
+            <div className='cartPreview'></div>
           </div>
         </div>
       </div>
