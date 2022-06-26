@@ -13,7 +13,7 @@ function getItems(filters) {
         if (filters.Class != "") {
             query += "Class = " + "'" + filters.Class + "'"
 
-            if(filters.Price != null || filters.Colours.length != 0 || filters.Search != ""){
+            if(filters.Price != null || filters.Colours.length != 0){
                 query += " AND "
             }
         }
@@ -24,7 +24,7 @@ function getItems(filters) {
             if(filters.Price >= 200) {query += ">= " + "'" + filters.Price + "'"}
             else {query += "<= " + "'" + filters.Price + "'"}
 
-            if(filters.Colours.length != 0 || filters.Search != ""){
+            if(filters.Colours.length != 0){
                 query += " AND "
             }
         }
@@ -37,17 +37,8 @@ function getItems(filters) {
                     query += " OR Colours = " + "'" + filters.Colours[x] + "'"
                 }
             }
-            if(filters.Search != ""){
-                query += " AND "
-            }
-        }
-
-        if (filters.Search.length != 0) {
-            query += "(Name LIKE " + "'%" + filters.Search + "%' OR Class LIKE " + "'%" + filters.Search + "%' OR Colours LIKE " + "'%" + filters.Search + "%')  "
         }
     }
-
-    console.log(query)
     
     return new Promise((resolve, reject) => {
         DBConnection.query(query, (err, res) => {

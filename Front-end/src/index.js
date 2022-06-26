@@ -6,8 +6,6 @@ import Home from './Home'
 import Footer from './Footer'
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import './style.css';
-import Cart from './Cart'
-
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
@@ -18,7 +16,6 @@ root.render(
         <Route path='/' element={<Home/>}></Route>
         <Route path='/login' element={<Login />}></Route>
         <Route path='/register' element={<Register />}></Route>
-        <Route path='/cart' element={<Cart />}></Route>
       </Routes>
       <Footer />
     </Router>
