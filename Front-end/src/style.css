@@ -626,6 +626,18 @@ body {
     height:400px;
 }
 
+.itemCartEditor{
+    display: flex;
+    margin:auto;
+    width:25%;
+}
+
+.itemCartEditor {
+    user-select: none;
+}
+
+
+
 @keyframes formCoverUnderlineAnim {
     0% {
         width: 0px;

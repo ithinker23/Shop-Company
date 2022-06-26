@@ -10,6 +10,7 @@ export default function Home() {
   const [items, setItems] = useState([]);
   const [allFilters, setAllFilters] = useState({ Class: "", Price: null, Colours: [], Search: "" });
   const [userCookie, setUserCookie] = useState()
+  const [cartIventory, setCartIventory] = useState()
 
 // Function that awaits for a response from a request given to the back-end, this request is to retrieve all items that meet the filters
 // try-catch is not needed as there will be no failing cases
@@ -29,7 +30,6 @@ export default function Home() {
       setUserCookie(err.response.data)
     }
   }
-
 
 // Authenticates user of cookies, useEffect will make authCookie() run everytime the page loads
   useEffect(() => {
@@ -61,6 +61,15 @@ export default function Home() {
     setAllFilters(copyOfFIlters)
     console.log(allFilters)
   }
+  
+  
+  //{id: id, Amount: amount}
+  function handleSettingCartInventory(item){
+    setCartIventory(prevInv => {
+      
+    })
+  }
+
 
   return (
     <>
