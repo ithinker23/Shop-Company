@@ -3,21 +3,28 @@ import Filter from './Filter'
 import { useState, useEffect } from 'react'
 import Axios from 'axios'
 import Header from './Header'
-
+import Cart from './Cart'
 export default function Home() {
 
   const backendURL = 'http://localhost:5000';
   const [items, setItems] = useState([]);
+  // List of objects
   const [allFilters, setAllFilters] = useState({ Class: "", Price: null, Colours: [], Search: "" });
-  const [userCookie, setUserCookie] = useState()
-  const [cartIventory, setCartIventory] = useState()
 
+  const [userCookie, setUserCookie] = useState()
+
+  // List of objects
+  const [cartInventory, setCartInventory] = useState([])
 
 // Function that awaits for a response from a request given to the back-end, this request is to retrieve all items that meet the filters
 // try-catch is not needed as there will be no failing cases
   async function getItems(filters) {
+    try{
     const response = await Axios.post(backendURL + "/inventory/getItems", filters);
     setItems(response.data.items)
+    }catch (err){
+      console.log(err)
+    }
   }
 
 // Function that awaits for a response froma a request given to the back-end, this request is to authenticate cookies
@@ -44,8 +51,8 @@ export default function Home() {
   }, [allFilters])
 
 
-
-// creates a copy 
+// creates a copy filters because useEffect will only detect changes to filters' object as a whole.
+// by creating a copy it can also detect changes to the elements of the object
   function handleSettingFilters(filters) {
     var copyOfFIlters = { Class: allFilters.Class, Price: allFilters.Price, Colours: allFilters.Colours, Search: allFilters.Search };
     copyOfFIlters.Class = filters.Class
@@ -58,23 +65,22 @@ export default function Home() {
     var copyOfFIlters = { Class: allFilters.Class, Price: allFilters.Price, Colours: allFilters.Colours, Search: allFilters.Search };
     copyOfFIlters.Search = search
     setAllFilters(copyOfFIlters)
+    console.log(allFilters)
   }
   
-  
-  //{id: id, Amount: amount}
-  function handleSettingCartInventory(item){
-    setCartIventory(prevInv => {
-      
+  function handleSettingCart(item){
+    setCartInventory(prevInv => {
+     return [...prevInv, item]
     })
   }
-
 
   return (
     <>
       <Header userInfo={userCookie} handleSettingSearch={handleSettingSearch} />
       <div className='homePage'>
         <Filter handleSettingFilters={handleSettingFilters} />
-        <AllItems items={items} />
+        <AllItems handleSettingCart={handleSettingCart} items={items} />
+        <Cart cartInventory={cartInventory}/>
       </div>
     </>
   )

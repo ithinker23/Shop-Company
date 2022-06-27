@@ -1,9 +1,11 @@
 import React, { useRef, useState } from 'react'
 
 
-export default function Item({ item }) {
+export default function Item({ item, handleSettingCart }) {
 
   const itemPreviewRef = useRef();
+
+
 
   return (
     <>
@@ -12,12 +14,8 @@ export default function Item({ item }) {
           itemPreviewRef.current.style.display = "block";
         }, 100)
       }}>
-        <div className='itemImagePreviewContainer'>
+        <div className='itemImagePreviewContainer' >
           <img className="itemImagePreview" src={item.Photo} alt='of product'></img>
-
-          <div className='plusMinusCart'>
-
-          </div>
         </div>
         <div className='itemDivDesc'>
           <div className='itemDivTitle'>{item.Name}<div className='itemDivPrice'>${item.Price}</div></div>
@@ -25,7 +23,6 @@ export default function Item({ item }) {
           <div className='itemDivColours'>{item.Colours}</div>
         </div>
       </div>
-
       <div ref={itemPreviewRef} className='itemPopupPreviewContainer'>
         <div className='itemPopupPreview'>
           <div className='itemPopupClose' onClick={() => { itemPreviewRef.current.style.display = "none"; }}>x</div>
@@ -33,13 +30,11 @@ export default function Item({ item }) {
           <div className='itemPopupName'>{item.Name}
             <div className='itemPopupPrice'>${item.Price}</div>
             <div className='itemPopupClass'>{item.Class}</div>
-            <div className='itemCartEditor'>
-              <button className='plusMinusButton'> - </button>
-              <div className='itemCounterDiv'>
-                {cartIventory}
-              </div>
-              <button className='plusMinusButton'> + </button>
-            </div>
+            <button className='buttonCart' onClick={()=>{
+              handleSettingCart({Name:item.Name, Photo:item.Photo, Price:item.Price})
+            }}>
+            ADD TO CART
+          </button>
           </div>
 
 
