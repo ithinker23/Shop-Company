@@ -5,28 +5,27 @@ export default function Cart({ cartInventory, cartState }) {
 
     const cartPopoutRef = useRef();
 
-    useEffect(() => {
-        console.log(cartInventory)
-    }, [cartInventory])
-
     useEffect(()=>{
         if(cartState){
-            cartPopoutRef.current.style.right = "-105%"
-        }else{
             cartPopoutRef.current.style.right = "0"
+        }else{
+            cartPopoutRef.current.style.right = "-105%"
         }
     },[cartState])
 
     return (
         <>
-            <div className='cart'>
-                <div className='cartItemsList' ref={cartPopoutRef}>
+            <div className='cartContainer'>
+                <div className='cart' ref={cartPopoutRef}>
                 <div className='cartHeader'>CART</div>
+                <div className='cartItems'>
                 {cartInventory.map(cartItem => {
                 return (
                     <CartItem cartItem={cartItem} />
                  )
                 })}
+                </div>
+                <div className='cartFooter'></div>
                 </div>
             </div>
         </>)
