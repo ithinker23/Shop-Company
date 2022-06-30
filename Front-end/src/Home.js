@@ -74,7 +74,7 @@ export default function Home() {
   }
 
   // Given item = {ID:item.ID, Price:item.Price}
-  function handleSettingCart(item) {
+  function increaseQuant(item) {
     setCartInventory(currentItems => {
       if (currentItems.find(element => element.ID === item.ID) == null) {
         return ([...currentItems, { ID: item.ID, Price: item.Price, Quantity: 1 }])
@@ -87,17 +87,22 @@ export default function Home() {
           }})
       }
     })
-    // if (cartInventory.find(element => element.ID === item.ID)) {
-    //   setCartInventory(prevInv => {
-    //     return [...prevInv, {ID:item.ID, Price:item.Price, Quantity: 1}]
-    //    })
-    // } else {
-    //   if (cartInventory.map(element => element.ID === item.ID)) {
-    //     return {...item, quantity: item.Quantity + 1}
-    //   } else {
-    //     return item
-    //   }     
-    // }
+  }
+
+  function decreaseQuant(item) {
+    setCartInventory(currentItems => {
+      if (currentItems.find(element => element.ID === item.ID)) {
+        return currentItems.filter(element => element.ID !== item.ID)
+      } else {
+        return currentItems.map(element => {
+          if (element.ID === item.ID) {
+            return {...element, Price: item.Price, Quantity: element.Quantity - 1}
+          } else {
+            return element
+          }
+        })
+      }
+    })
   }
 
   return (
@@ -105,7 +110,7 @@ export default function Home() {
       <Header userInfo={userCookie} handleSettingSearch={handleSettingSearch} />
       <div className='homePage'>
         <Filter handleSettingFilters={handleSettingFilters} />
-        <AllItems handleSettingCart={handleSettingCart} items={items} />
+        <AllItems item={items} itemQuant={cartInventory.Quantity} increaseQuant={increaseQuant} decreaseQuant={decreaseQuant}/>
         <Cart cartInventory={cartInventory} />
       </div>
     </>

@@ -2,7 +2,7 @@ import React, { useRef } from 'react'
 import Item from './Item';
 import Notifs from './Notifs';
 
-export default function AllItems({ items, handleSettingCart }) {
+export default function AllItems({ item, decreaseQuant, increaseQuant, itemQuant }) {
 
     const notifsRef = useRef();
     const allItemsRef = useRef();
@@ -10,9 +10,9 @@ export default function AllItems({ items, handleSettingCart }) {
     return (
         <>
             <div ref = {allItemsRef} className='allItems'>
-                {items.map(item => {
+                {item.map(item => {
                     return <>
-                        <Item handleSettingCart={handleSettingCart} item={item} />
+                        <Item itemQuant={itemQuant} increaseQuant={increaseQuant} decreaseQuant={decreaseQuant} item={item}/>
                     </>
                 })
                 }

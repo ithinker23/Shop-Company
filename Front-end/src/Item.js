@@ -1,11 +1,9 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef } from 'react'
 
 
-export default function Item({ item, handleSettingCart }) {
+export default function Item({ item, increaseQuant, decreaseQuant, itemQuant }) {
 
   const itemPreviewRef = useRef();
-
-
 
   return (
     <>
@@ -31,13 +29,14 @@ export default function Item({ item, handleSettingCart }) {
             <div className='itemPopupPrice'>${item.Price}</div>
             <div className='itemPopupClass'>{item.Class}</div>
             <button className='buttonCart' onClick={()=>{
-              handleSettingCart({Name:item.Name, Photo:item.Photo, Price:item.Price})
-            }}>
-            ADD TO CART
-          </button>
+              console.log(item.Price)
+              decreaseQuant(item)
+            }}> - </button>
+            <div>{itemQuant}</div>
+            <button className='buttonCart' onClick={()=>{
+              increaseQuant(item)
+            }}> + </button>
           </div>
-
-
           <div className='itemPopupDesc'>
             {item.Description}
           </div>
