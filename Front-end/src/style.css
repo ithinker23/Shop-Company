@@ -670,7 +670,7 @@ body {
     display: grid;
     height:50px;
     grid-template-areas: "itemName itemPrice",
-    "itemName itemQuantity";
+                        "itemName itemQuantity";
 }
 .cartItemName{
     grid-area:itemName;
