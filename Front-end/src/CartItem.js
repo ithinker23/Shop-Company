@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react'
+import React from 'react'
 
 
 export default function CartItem ({cartItem}) {
@@ -7,7 +7,10 @@ export default function CartItem ({cartItem}) {
     <>
         <div>
             {cartItem.Name}
+            <br></br>
             {cartItem.Price}
+            <br></br>
+            {cartItem.Quantity}
         </div>
     </>)
 }
