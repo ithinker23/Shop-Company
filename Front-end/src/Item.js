@@ -29,6 +29,7 @@ export default function Item({ item, increaseQuant, decreaseQuant, itemQuant }) 
             <div className='itemPopupPrice'>${item.Price}</div>
             <div className='itemPopupClass'>{item.Class}</div>
             <button className='buttonCart' onClick={()=>{
+<<<<<<< Updated upstream
               console.log(item.Price)
               decreaseQuant(item)
             }}> - </button>
@@ -36,6 +37,12 @@ export default function Item({ item, increaseQuant, decreaseQuant, itemQuant }) 
             <button className='buttonCart' onClick={()=>{
               increaseQuant(item)
             }}> + </button>
+=======
+              handleSettingCart({ID: item.ID, Name:item.Name, Photo:item.Photo, Price:item.Price})
+            }}>
+            ADD TO CART
+          </button>
+>>>>>>> Stashed changes
           </div>
           <div className='itemPopupDesc'>
             {item.Description}

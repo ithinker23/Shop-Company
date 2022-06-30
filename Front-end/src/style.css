@@ -642,8 +642,44 @@ body {
     top:80px;
     right:0;
     height:1250px;
-    width:30%;
-    background-color: rgba(0, 0, 0, 0.765);
+    width:25%;
+    overflow: hidden;
+}
+
+.cartItemsList{
+    position: absolute;
+    background-color: rgb(255, 255, 255);
+    width:99%;
+    height:100%;
+    border: 1px solid black;
+    transition: all ease-in-out 0.5s;
+}
+.cartHeader{
+    text-align: center;
+    margin-top: 5px;
+    font-size: 30px;
+    font-style: monospace;
+    border-bottom:1px solid black;
+    padding-bottom: 10px;
+}
+
+.cartItem{
+    padding-left:20px;
+    padding-top:10px;
+    border-bottom:1px solid black;
+    display: grid;
+    height:50px;
+    grid-template-areas: "itemName itemPrice",
+    "itemName itemQuantity";
+}
+.cartItemName{
+    grid-area:itemName;
+}
+.cartItemPrice{
+    grid-area:itemPrice;
+}
+.cartItemQuantity{
+    grid-area:itemQuantity;
 }
 
 @keyframes formCoverUnderlineAnim {

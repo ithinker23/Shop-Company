@@ -1,16 +1,24 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 
 
 export default function CartItem ({cartItem}) {
 
+    useEffect(() => {
+      console.log(cartItem)
+    })
+    
     return (
     <>
-        <div>
+        <div className='cartItem'>
+            <div className='cartItemName'>
             {cartItem.Name}
-            <br></br>
+            </div>
+            <div className='cartItemPrice'>
             {cartItem.Price}
-            <br></br>
+            </div>
+            <div className='cartItemQuantity'>
             {cartItem.Quantity}
+            </div>
         </div>
     </>)
 }

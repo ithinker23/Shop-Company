@@ -5,13 +5,12 @@ import cart from './cart.png'
 import search from './search.png'
 
 
-export default function Header({ userInfo, handleSettingSearch }) {
+export default function Header({ userInfo, handleSettingSearch, toggleCart }) {
 
   const headerLinksRef = useRef();
   const headerUsernameRef = useRef();
   const headerUsernameDisplayRef = useRef();
   const headerSearchBarRef = useRef();
-  const cartImageContainerRef = useRef();
 
   useEffect(() => {
     if (userInfo !== undefined) {
@@ -65,13 +64,7 @@ export default function Header({ userInfo, handleSettingSearch }) {
             <div className="slide"></div>
             <div className='buttonText'>LOGOUT</div>
           </div>
-          <div className='cartImageContainer' ref={cartImageContainerRef} onClick={() => {
-            if (cartImageContainerRef.current.style.display === 'flex') {
-              cartImageContainerRef.current.style.display = 'none'
-            } else {
-              cartImageContainerRef.current.style.display = 'flex'
-            }
-          }}>
+          <div className='cartImageContainer' onClick={toggleCart}>
             <img className='cartImage' src={cart} alt="CART"></img>
           </div>
         </div>

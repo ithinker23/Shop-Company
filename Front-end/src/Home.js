@@ -8,6 +8,8 @@ export default function Home() {
 
   const backendURL = 'http://localhost:5000';
 
+  const [cartState, setCartState] = useState(false);
+
   // List of objects
   // {}
   const [items, setItems] = useState([]);
@@ -89,6 +91,7 @@ export default function Home() {
     })
   }
 
+<<<<<<< Updated upstream
   function decreaseQuant(item) {
     setCartInventory(currentItems => {
       if (currentItems.find(element => element.ID === item.ID)) {
@@ -102,16 +105,26 @@ export default function Home() {
           }
         })
       }
+=======
+  function toggleCart(){
+    setCartState(bool => {
+      return !bool;
+>>>>>>> Stashed changes
     })
   }
 
   return (
     <>
-      <Header userInfo={userCookie} handleSettingSearch={handleSettingSearch} />
+      <Header userInfo={userCookie} handleSettingSearch={handleSettingSearch} toggleCart={toggleCart}/>
       <div className='homePage'>
         <Filter handleSettingFilters={handleSettingFilters} />
+<<<<<<< Updated upstream
         <AllItems item={items} itemQuant={cartInventory.Quantity} increaseQuant={increaseQuant} decreaseQuant={decreaseQuant}/>
         <Cart cartInventory={cartInventory} />
+=======
+        <AllItems handleSettingCart={handleSettingCart} items={items} />
+        <Cart cartInventory={cartInventory} cartState={cartState}/>
+>>>>>>> Stashed changes
       </div>
     </>
   )
