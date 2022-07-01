@@ -2,7 +2,7 @@ import React, { useRef } from 'react'
 import Item from './Item';
 import Notifs from './Notifs';
 
-export default function AllItems({ items, decreaseQuant, increaseQuant }) {
+export default function AllItems({ item, decreaseQuant, increaseQuant, itemQuant }) {
 
     const notifsRef = useRef();
     const allItemsRef = useRef();
@@ -10,9 +10,9 @@ export default function AllItems({ items, decreaseQuant, increaseQuant }) {
     return (
         <>
             <div ref = {allItemsRef} className='allItems'>
-                {items.map(item => {
+                {item.map(item => {
                     return <>
-                        <Item item={item} increaseQuant={increaseQuant} decreaseQuant={decreaseQuant}/>
+                        <Item itemQuant={itemQuant} increaseQuant={increaseQuant} decreaseQuant={decreaseQuant} item={item}/>
                     </>
                 })
                 }

@@ -25,6 +25,9 @@
     overflow: hidden;
 
 }
+.buttonCart{
+    margin-top: -50px;
+}
 .notifMoveAnim {
     height: 85px;
     animation: notifScroll 1s;
@@ -634,77 +637,51 @@ body {
     user-select: none;
 }
 
-.cartContainer{
-    position:fixed;
+.cart{
+    position:absolute;
     top:80px;
     right:0;
-    height:calc(100vh - 80px);
+    height:1250px;
     width:25%;
     overflow: hidden;
-    pointer-events: none;
 }
-.buttonCartContainer{
-    margin:10px;
-    display: flex;
-    height:25px;
-    justify-content: center;
-}
-.cart{
+
+.cartItemsList{
     position: absolute;
     background-color: rgb(255, 255, 255);
     width:99%;
-    height:calc(100vh - 80px);
+    height:100%;
     border: 1px solid black;
-    transition: right ease-in-out 0.5s;
-    right:-105%;
-    pointer-events: all;
-}
-.itemQuantity{
-    font-size: 22px;
-    margin:0 10px;
+    transition: all ease-in-out 0.5s;
 }
 .cartHeader{
     text-align: center;
+    margin-top: 5px;
     font-size: 30px;
     font-style: monospace;
     border-bottom:1px solid black;
     padding-bottom: 10px;
-    background-color: white;
 }
 
 .cartItem{
     padding-left:20px;
     padding-top:10px;
-    padding-right:20px;
     border-bottom:1px solid black;
-    display: flex;
-    justify-content: space-between;
+    display: grid;
     height:50px;
+    grid-template-areas: "itemName itemPrice",
+                        "itemName itemQuantity";
 }
 .cartItemName{
-   
+    grid-area:itemName;
+}
+.cartItemPrice{
+    grid-area:itemPrice;
+}
+.cartItemQuantity{
+    grid-area:itemQuantity;
 }
 
-.cartItemPrice{
-    text-align: right;
-    font-weight: bold;
-}
-.cartItemImageContainer{    
-    width:100%;
-    height:100%;
-}
-.cartFooter{
-    position: absolute;
-    height:10%;
-    width: 100%;
-    top:90%;
-    background-color: black;
-    
-}
-.cartItems{
-    overflow-y: scroll;
-    height: calc(90% - 45px);
-}
 @keyframes formCoverUnderlineAnim {
     0% {
         width: 0px;

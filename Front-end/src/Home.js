@@ -79,11 +79,11 @@ export default function Home() {
   function increaseQuant(item) {
     setCartInventory(currentItems => {
       if (currentItems.find(element => element.ID === item.ID) == null) {
-        return ([...currentItems, { ID: item.ID,Name: item.Name,Photo:item.Photo, Price: item.Price, Quantity: 1 }])
+        return ([...currentItems, { ID: item.ID, Price: item.Price, Quantity: 1 }])
       } else {
         return currentItems.map(element => {
           if (element.ID === item.ID) {
-            return {...element, Quantity: element.Quantity + 1}
+            return {...element, Price: item.Price, Quantity: element.Quantity + 1}
           } else {
             return element
           }})
@@ -98,7 +98,7 @@ export default function Home() {
       } else {
         return currentItems.map(element => {
           if (element.ID === item.ID) {
-            return {...element, Quantity: element.Quantity - 1}
+            return {...element, Price: item.Price, Quantity: element.Quantity - 1}
           } else {
             return element
           }
@@ -106,19 +106,17 @@ export default function Home() {
       }
     })
   }
-
   function toggleCart(){
     setCartState(bool => {
       return !bool;
     })
   }
-  
   return (
     <>
       <Header userInfo={userCookie} handleSettingSearch={handleSettingSearch} toggleCart={toggleCart}/>
       <div className='homePage'>
         <Filter handleSettingFilters={handleSettingFilters} />
-        <AllItems items={items} increaseQuant={increaseQuant} decreaseQuant={decreaseQuant}/>
+        <AllItems item={items} itemQuant={cartInventory.Quantity} increaseQuant={increaseQuant} decreaseQuant={decreaseQuant}/>
         <Cart cartInventory={cartInventory} cartState={cartState}/>
       </div>
     </>
