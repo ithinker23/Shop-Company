@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 import CartItem from './CartItem'
 
-export default function Cart({ cartInventory, cartState }) {
+export default function Cart({ cartInventory, cartState, decreaseQuant, increaseQuant }) {
 
     const cartPopoutRef = useRef();
 
@@ -13,6 +13,16 @@ export default function Cart({ cartInventory, cartState }) {
         }
     },[cartState])
 
+    function subtotalCalc() {
+        var subtotal = 0
+
+        for (let x=0; x<cartInventory.length; x++) {
+            subtotal += cartInventory[x].Quantity * cartInventory[x].Price
+        }
+
+        return subtotal.toFixed(2)
+    }
+
     return (
         <>
             <div className='cartContainer'>
@@ -21,11 +31,15 @@ export default function Cart({ cartInventory, cartState }) {
                 <div className='cartItems'>
                 {cartInventory.map(cartItem => {
                 return (
-                    <CartItem cartItem={cartItem} />
+                    <CartItem cartItem={cartItem} increaseQuant={increaseQuant} decreaseQuant={decreaseQuant}/>
                  )
                 })}
                 </div>
-                <div className='cartFooter'></div>
+                <div className='cartFooter'>
+                    <div className='cartFooterText'>
+                        SUBTOTAL: ${subtotalCalc()}
+                    </div>
+                </div>
                 </div>
             </div>
         </>)

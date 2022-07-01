@@ -705,6 +705,9 @@ body {
     overflow-y: scroll;
     height: calc(90% - 45px);
 }
+.cartFooterText {
+    color: #fff5fa;
+}
 @keyframes formCoverUnderlineAnim {
     0% {
         width: 0px;

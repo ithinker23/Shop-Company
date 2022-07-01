@@ -1,9 +1,13 @@
-import React, { useRef } from 'react'
+import React, { useRef, useEffect  } from 'react'
 
 
-export default function Item({ increaseQuant, decreaseQuant, itemQuant, item }) {
+export default function Item({ increaseQuant, decreaseQuant, item, cartInformation }) {
 
   const itemPreviewRef = useRef();
+
+  useEffect(() => {
+    console.log(cartInformation)
+  })
 
   return (
     <>
@@ -32,7 +36,7 @@ export default function Item({ increaseQuant, decreaseQuant, itemQuant, item }) 
               <button className='buttonCart' onClick={() => {
                 decreaseQuant(item)
               }}> - </button>
-              <div className='itemQuantity'>{itemQuant}</div>
+              <div className='itemQuantity'>{cartInformation}</div>
               <button className='buttonCart' onClick={() => {
                 increaseQuant(item)
               }}> + </button>

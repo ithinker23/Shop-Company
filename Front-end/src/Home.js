@@ -93,7 +93,7 @@ export default function Home() {
 
   function decreaseQuant(item) {
     setCartInventory(currentItems => {
-      if (currentItems.find(element => element.ID === item.ID)) {
+      if (currentItems.find(element => element.ID === item.ID).Quantity === 1) {
         return currentItems.filter(element => element.ID !== item.ID)
       } else {
         return currentItems.map(element => {
@@ -112,14 +112,19 @@ export default function Home() {
       return !bool;
     })
   }
+
+
+useEffect (() => {
+  console.log(cartInventory)
+})
   
   return (
     <>
       <Header userInfo={userCookie} handleSettingSearch={handleSettingSearch} toggleCart={toggleCart}/>
       <div className='homePage'>
         <Filter handleSettingFilters={handleSettingFilters} />
-        <AllItems items={items} increaseQuant={increaseQuant} decreaseQuant={decreaseQuant}/>
-        <Cart cartInventory={cartInventory} cartState={cartState}/>
+        <AllItems items={items} increaseQuant={increaseQuant} decreaseQuant={decreaseQuant} cartInventory={cartInventory}/>
+        <Cart cartInventory={cartInventory} cartState={cartState} decreaseQuant={decreaseQuant} increaseQuant={increaseQuant}/>
       </div>
     </>
   )
