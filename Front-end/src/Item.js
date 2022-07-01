@@ -1,7 +1,7 @@
 import React, { useRef } from 'react'
 
 
-export default function Item({ item, increaseQuant, decreaseQuant, itemQuant }) {
+export default function Item({ increaseQuant, decreaseQuant, itemQuant, item }) {
 
   const itemPreviewRef = useRef();
 
@@ -28,14 +28,15 @@ export default function Item({ item, increaseQuant, decreaseQuant, itemQuant }) 
           <div className='itemPopupName'>{item.Name}
             <div className='itemPopupPrice'>${item.Price}</div>
             <div className='itemPopupClass'>{item.Class}</div>
-            <button className='buttonCart' onClick={()=>{
-              console.log(item.Price)
-              decreaseQuant(item)
-            }}> - </button>
-            <div>{itemQuant}</div>
-            <button className='buttonCart' onClick={()=>{
-              increaseQuant(item)
-            }}> + </button>
+            <div className='buttonCartContainer'>
+              <button className='buttonCart' onClick={() => {
+                decreaseQuant(item)
+              }}> - </button>
+              <div className='itemQuantity'>{itemQuant}</div>
+              <button className='buttonCart' onClick={() => {
+                increaseQuant(item)
+              }}> + </button>
+            </div>
           </div>
           <div className='itemPopupDesc'>
             {item.Description}
