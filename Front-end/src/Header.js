@@ -38,7 +38,7 @@ export default function Header({ userInfo, handleSettingSearch, toggleCart }) {
         </div>
         <div className='searchBarContainer'>
           <input ref={headerSearchBarRef} className='searchBar' type="text"></input>
-          <div className='searchImageContainer'><img className='searchImage' src={search} onClick={handleSearch} alt="SEARCH"></img></div>
+          <div className='searchImageContainer'><img className='searchImage' src={search} alt="SEARCH" onClick={handleSearch}></img></div>
         </div>
 
         <div className='headerLinks' ref={headerLinksRef}>
@@ -57,15 +57,15 @@ export default function Header({ userInfo, handleSettingSearch, toggleCart }) {
         </div>
 
         <div className='headerLinks' ref={headerUsernameRef}>
+          <div className='cartImageContainer' onClick={toggleCart}>
+            <img className='cartImage' src={cart} alt="CART"></img>
+          </div>
           <div className='headerButton button' onClick={() => {
             cookie.remove("Username");
             window.location = "/";
-          }}>
+           }}>
             <div className="slide"></div>
             <div className='buttonText'>LOGOUT</div>
-          </div>
-          <div className='cartImageContainer' onClick={toggleCart}>
-            <img className='cartImage' src={cart} alt="CART"></img>
           </div>
         </div>
       </div>

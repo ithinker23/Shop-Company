@@ -1,13 +1,9 @@
-import React, { useRef, useEffect  } from 'react'
+import React, { useRef } from 'react'
 
 
 export default function Item({ increaseQuant, decreaseQuant, item, cartInformation }) {
 
   const itemPreviewRef = useRef();
-
-  useEffect(() => {
-    console.log(cartInformation)
-  })
 
   return (
     <>

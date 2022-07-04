@@ -3,6 +3,8 @@ const DBConnection = require('../model/DBConnection');
 // filters will be in the form of { Class: '', Price: '', Colours: [], Search: '' } when empty
 // this function will have to consume an object named filters, in our case, and using SQL to retrieve items from the database
 function getItems(filters) {
+
+    console.log(filters)
     var query = ""
 
     if (filters.Class == "" && filters.Price == null && filters.Colours.length == 0 && filters.Search == "") {
@@ -38,6 +40,11 @@ function getItems(filters) {
                 }
             }
         }
+
+        if (filters.Search != null) {
+            query += "Price LIKE " + "'%" + filters.Search + "%'" + "OR Class LIKE " + "'%" + filters.Search + "%'"
+        }
+
     }
     
     return new Promise((resolve, reject) => {
@@ -48,4 +55,4 @@ function getItems(filters) {
     })
 }
 
-module.exports = { getItems }
+module.exports = { getItems } 

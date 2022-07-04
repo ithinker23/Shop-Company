@@ -8,28 +8,37 @@ export default function RegisterPage() {
   var newEmailRef = useRef()
   var newPasswordRef = useRef()
   var newFirstNameRef = useRef();
-
   const notifsRef = useRef();
 
   const backendURL = 'http://localhost:5000';
+
+  function emailVerf(email) {
+    if(!email.includes('@')) {
+      throw new SyntaxError("Invalid Email: you have given an invalid email")
+    }
+  }
 
   async function checkRegisterHandler() {
     if (!(newUserNameRef.current.value === "" || newEmailRef.current.value === "" || newPasswordRef.current.value === "" || newFirstNameRef.current.value === "")) {
 
       const formData = { Username: newUserNameRef.current.value, Email: newEmailRef.current.value, Password: newPasswordRef.current.value, FirstName: newFirstNameRef.current.value }
       try {
-        var response = await Axios.post(backendURL + '/validify/register', formData)
-        notifsRef.current.showNotifs(response.data.title, response.data.msg,response.data.color)
-        setTimeout(()=>{
-          window.location = "/login"
-        },1000)
-       
-      } catch (err) {
-
-        console.log(err.response.data)
-        notifsRef.current.showNotifs(err.response.data.title, err.response.data.msg, response.data.color)
+        emailVerf(formData.Email)
+        try {
+          var response = await Axios.post(backendURL + '/validify/register', formData)
+          notifsRef.current.showNotifs(response.data.title, response.data.msg, response.data.color)
+          setTimeout(()=>{
+            window.location = "/login"
+          },1000)
+         
+        } catch (err) {
+  
+          console.log(err.response.data)
+          notifsRef.current.showNotifs(err.response.data.title, err.response.data.msg, response.data.color)
+        }
+      } catch(err) {
+        notifsRef.current.showNotifs("Registration Failed", "Invalid Email","#ff4c4c")
       }
-
     } else {
       notifsRef.current.showNotifs("Registration Failed", "Input field(s) are empty","#ff4c4c")
     }
