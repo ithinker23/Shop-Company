@@ -4,7 +4,8 @@ const DBConnection = require('../model/DBConnection');
 // this function will have to consume an object named filters, in our case, and using SQL to retrieve items from the database
 function getItems(filters) {
 
-    console.log(filters)
+    console.log(filters.Search.Class)
+
     var query = ""
 
     if (filters.Class == "" && filters.Price == null && filters.Colours.length == 0 && filters.Search == "") {
@@ -15,7 +16,7 @@ function getItems(filters) {
         if (filters.Class != "") {
             query += "Class = " + "'" + filters.Class + "'"
 
-            if(filters.Price != null || filters.Colours.length != 0){
+            if(filters.Price != null || filters.Colours.length != 0 || filters.Search != ""){
                 query += " AND "
             }
         }
@@ -26,7 +27,7 @@ function getItems(filters) {
             if(filters.Price >= 200) {query += ">= " + "'" + filters.Price + "'"}
             else {query += "<= " + "'" + filters.Price + "'"}
 
-            if(filters.Colours.length != 0){
+            if(filters.Colours.length != 0 || filters.Search != ""){
                 query += " AND "
             }
         }
@@ -39,9 +40,12 @@ function getItems(filters) {
                     query += " OR Colours = " + "'" + filters.Colours[x] + "'"
                 }
             }
+            if(filters.Search != ""){
+                query += " AND "
+            }
         }
 
-        if (filters.Search != null) {
+        if (filters.Search != "") {
             query += "Price LIKE " + "'%" + filters.Search + "%'" + "OR Class LIKE " + "'%" + filters.Search + "%'"
         }
 
