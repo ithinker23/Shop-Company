@@ -29,6 +29,7 @@ export default function Item({ increaseQuant, decreaseQuant, item, cartInformati
             <div className='itemPopupPrice'>${item.Price}</div>
             <div className='itemPopupClass'>{item.Class}</div>
             <div className='buttonCartContainer'>
+              <div className='buttonCartHeader'>ADD ITEMS TO CART</div>
               <button className='buttonCart' onClick={() => {
                 decreaseQuant(item)
               }}> - </button>

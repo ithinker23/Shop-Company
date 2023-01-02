@@ -4,7 +4,7 @@ const DBConnection = require('../model/DBConnection');
 // this function will have to consume an object named filters, in our case, and using SQL to retrieve items from the database
 function getItems(filters) {
 
-    console.log(filters.Search.Class)
+    console.log(filters)
 
     var query = ""
 
@@ -14,7 +14,7 @@ function getItems(filters) {
         query += "SELECT * FROM items WHERE "
 
         if (filters.Class != "") {
-            query += "Class = " + "'" + filters.Class + "'"
+            query += "(Class = " + "'" + filters.Class + "')"
 
             if(filters.Price != null || filters.Colours.length != 0 || filters.Search != ""){
                 query += " AND "
@@ -22,10 +22,10 @@ function getItems(filters) {
         }
         
         if (filters.Price != null) {
-            query += "Price ";
+            query += "(Price ";
 
-            if(filters.Price >= 200) {query += ">= " + "'" + filters.Price + "'"}
-            else {query += "<= " + "'" + filters.Price + "'"}
+            if(filters.Price >= 200) {query += ">= " + "'" + filters.Price + "')"}
+            else {query += "<= " + "'" + filters.Price + "')"}
 
             if(filters.Colours.length != 0 || filters.Search != ""){
                 query += " AND "
@@ -35,22 +35,24 @@ function getItems(filters) {
         if (filters.Colours.length != 0) {
             for (let x = 0; x < filters.Colours.length; x++ ) {
                 if (x==0) {
-                    query += "Colours = " + "'" + filters.Colours[x] + "'"
+                    query += "(Colours = " + "'" + filters.Colours[x] + "'"
                 } else {
                     query += " OR Colours = " + "'" + filters.Colours[x] + "'"
                 }
             }
+            query += ")"
             if(filters.Search != ""){
                 query += " AND "
             }
         }
 
         if (filters.Search != "") {
-            query += "Price LIKE " + "'%" + filters.Search + "%'" + "OR Class LIKE " + "'%" + filters.Search + "%'"
+            query += "(Price LIKE '%" + filters.Search + "%' OR Class LIKE '%" + filters.Search + "%' OR Colours LIKE '%" + filters.Search + "%' )"
         }
 
     }
     
+    console.log(query)
     return new Promise((resolve, reject) => {
         DBConnection.query(query, (err, res) => {
             if (err) reject(err)

@@ -53,6 +53,7 @@ export default function Filter({ handleSettingFilters }) {
   return (
     <>
       <div className="filterContainer">
+      <div className='filters'>
         <div className='filterGroupHeader'>Class</div>
         <div className='filterGroup'>
           <div className="dropdownInputContainer">
@@ -111,7 +112,7 @@ export default function Filter({ handleSettingFilters }) {
             <div className='inputLabel'>Brown</div>
           </div>
         </div>
-
+      </div>
         <div className='button filterButton' onClick={formatFilters}>
           <div className="slide"></div>
           <div className='buttonText'>Apply Filters</div>

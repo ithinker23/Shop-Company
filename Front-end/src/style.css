@@ -473,6 +473,7 @@ body {
 .itemPopupClass {
     text-align: right;
     margin-right: 25%;
+    margin-bottom:30px;
     font-size: 1.3vw;
     text-decoration: underline;
     color: grey;
@@ -639,7 +640,7 @@ body {
     top:80px;
     right:0;
     height:calc(100vh - 80px);
-    width:25%;
+    width:400px;
     overflow: hidden;
     pointer-events: none;
 }
@@ -649,6 +650,14 @@ body {
     height:25px;
     justify-content: center;
 }
+
+.buttonCart{
+    background-color: white;
+    border:1px solid black;
+    width:25px;
+    height:25px;
+}
+
 .cart{
     position: absolute;
     background-color: rgb(255, 255, 255);
@@ -668,8 +677,7 @@ body {
     font-size: 30px;
     font-style: monospace;
     border-bottom:1px solid black;
-    padding-bottom: 10px;
-    background-color: white;
+    padding-bottom: 5px;
 }
 
 .cartItem{
@@ -681,10 +689,14 @@ body {
     justify-content: space-between;
     height:50px;
 }
-.cartItemName{
-   
+.cartItemName, .cartItemPrice{
+   margin-top:10px;
+   font-size: 20px;
 }
-
+.buttonCartHeader{
+    font-size: 23px;
+    margin:0 10px 0 0;
+}
 .cartItemPrice{
     text-align: right;
     font-weight: bold;
@@ -698,15 +710,23 @@ body {
     height:10%;
     width: 100%;
     top:90%;
-    background-color: black;
+    background-color: #252525;
+    color: rgb(235, 234, 234);
     
 }
 .cartItems{
-    overflow-y: scroll;
+    overflow-y: auto;
     height: calc(90% - 45px);
 }
 .cartFooterText {
-    color: #fff5fa;
+    text-align: center;
+    margin-top: 35px;
+    font-size: 20px;
+}
+.filters{
+    overflow-y:auto;
+    overflow-x:hidden;
+
 }
 @keyframes formCoverUnderlineAnim {
     0% {
@@ -765,10 +785,24 @@ body {
 @media only screen and (max-width:800px){
     
     .formContainer{
-        display: none;
+        width:100%;
+        animation:none;
     }
 }
-
+@media only screen and (max-width:450px){
+    
+    .formContainer{
+        width:100%;
+    }
+    .formCover{
+        display: none;
+        animation:none;
+    }
+    .form{
+        width:100%;
+        animation:none;
+    }
+}
 @media only screen and (max-width: 1370px) {
     .allItems {
         grid-template-columns: auto auto;
@@ -893,8 +927,11 @@ body {
     .filterGroup {
         display: grid;
         grid-template-columns: auto auto;
+        margin:auto;
     }
-
+    .dropdownInputContainer{
+        margin-left:100px;
+    }
     .filterInput {
         width: 50%;
     }
@@ -928,13 +965,18 @@ body {
     .itemPopupClose {
         color: black;
     }
+    .headerUsername {
+        margin-left:100px;
+    }
 }
 
 @media only screen and (max-width: 550px) {
-    .headerUsername {
+    .headerInfo {
         display: none;
     }
-
+    .dropdownInputContainer{
+        margin-left:0;
+    }
     .filterGroup {
         display: grid;
         grid-template-columns: auto;
@@ -958,5 +1000,23 @@ body {
 
     .itemPopupDesc {
         font-size: 3.5vw;
+    }
+    .cartContainer{
+        width:100%;
+    }
+    .cart{
+        width:100%;
+    }
+    .cartItemName,.cartItemPrice{
+        font-size: 12px;
+        margin-top:13px;
+    }
+    .itemQuantity{
+        font-size: 15px;
+        margin-top:4px;
+    }
+    .buttonCartContainer{
+        width:30px;
+        height:30px;
     }
 }

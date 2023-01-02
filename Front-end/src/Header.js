@@ -54,18 +54,21 @@ export default function Header({ userInfo, handleSettingSearch, toggleCart }) {
             <div className="slide"></div>
             <div className='buttonText'>REGISTER</div>
           </div>
-        </div>
-
-        <div className='headerLinks' ref={headerUsernameRef}>
           <div className='cartImageContainer' onClick={toggleCart}>
             <img className='cartImage' src={cart} alt="CART"></img>
           </div>
+        </div>
+
+        <div className='headerLinks' ref={headerUsernameRef}>
           <div className='headerButton button' onClick={() => {
             cookie.remove("Username");
             window.location = "/";
            }}>
             <div className="slide"></div>
             <div className='buttonText'>LOGOUT</div>
+          </div>
+          <div className='cartImageContainer' onClick={toggleCart}>
+            <img className='cartImage' src={cart} alt="CART"></img>
           </div>
         </div>
       </div>
